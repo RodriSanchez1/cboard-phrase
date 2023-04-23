@@ -1,15 +1,15 @@
 import { Outlet } from 'react-router-dom';
 import AppBar from '../components/AppBar/AppBar';
-import CategoriesBar from '../components/CategoriesBar/CategoriesBar';
-import OutputSection from '../components/OutputSection/OutputSection';
-import GridSection from '../components/GridSection/GridSection';
+import AppHeader from '../features/appHeader/AppHeader';
+import CategoriesBar from '../features/categories/CategoriesBar/CategoriesBar';
+import AppGrid from '../features/grid/AppGrid';
 
 export default function RootPage() {
   return (
     <>
-      <OutputSection />
+      <AppHeader />
       <CategoriesBar />
-      <GridSection />
+      <AppGrid />
       <Outlet />
     </>
   );

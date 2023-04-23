@@ -1,6 +1,6 @@
 import Grid from './Grid/Grid';
 
-export default function GridSection() {
+export default function AppGrid() {
   return (
     <div className="GridSection">
       <Grid />

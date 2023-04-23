@@ -1,9 +1,9 @@
 import TextField from '@mui/material/TextField';
-import './TextInput.css';
+import './VoiceTextField.css';
 
-export default function TextInput() {
+export default function VoiceTextField() {
   return (
-    <div className="TextInput">
+    <div className="VoiceTextField">
       <TextField
         id="outlined-multiline-static"
         InputProps={{
