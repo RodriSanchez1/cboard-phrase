@@ -1,0 +1,608 @@
+{
+  "categories": [
+    {
+      "id": "c4e1f6g8h2",
+      "name": "Common Phrases",
+      "nameKey": "cboardPhrase.category.commonPhrases",
+      "author": "Cboard",
+      "email": "support@cboard.io",
+      "isPublic": true,
+      "hidden": false,
+      "phrases": [
+        {
+          "id": "h5j9d2k8f4s",
+          "label": "Nice to meet you",
+          "labelKey": "cboardPhrase.category.commonPhrases.niceToMeetYou",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "t6y1n7a8b3h",
+          "label": "How are you?",
+          "labelKey": "cboardPhrase.category.commonPhrases.howAreYou",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "j7m3s6k8n1t",
+          "label": "What's your name?",
+          "labelKey": "cboardPhrase.category.commonPhrases.whatsYourName",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "c9b5n1k8f4j",
+          "label": "Thank you",
+          "labelKey": "cboardPhrase.category.commonPhrases.thankYou",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "f5h6j9d2k8s",
+          "label": "Excuse me",
+          "labelKey": "cboardPhrase.category.commonPhrases.excuseMe",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "s6k8n1t3y5j",
+          "label": "I'm sorry",
+          "labelKey": "cboardPhrase.category.commonPhrases.imSorry",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "b5n1k8f4j7m",
+          "label": "Please",
+          "labelKey": "cboardPhrase.category.commonPhrases.please",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "h6j9d2k8s5f",
+          "label": "You're welcome",
+          "labelKey": "cboardPhrase.category.commonPhrases.youreWelcome",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "n1t3y5j7m9k",
+          "label": "I don't understand",
+          "labelKey": "cboardPhrase.category.commonPhrases.dontUnderstand",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "k8f4j7m3s6",
+          "label": "Goodbye",
+          "labelKey": "cboardPhrase.category.commonPhrases.goodbye",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "t2b6c8n4k1j",
+          "label": "Can you help me?",
+          "labelKey": "cboardPhrase.category.commonPhrases.helpMe",
+          "backgroundColor": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "c0e4g2j6k8",
+      "name": "Going shopping",
+      "nameKey": "cboardPhrase.category.goingShopping",
+      "author": "Cboard",
+      "email": "support@cboard.io",
+      "isPublic": true,
+      "hidden": false,
+      "phrases": [
+        {
+          "id": "kr4j5mt2pqh",
+          "label": "Do you have this in a different size?",
+          "labelKey": "cboardPhrase.category.goingShopping.size",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "l9sm4t2fq8d",
+          "label": "How much does this cost?",
+          "labelKey": "cboardPhrase.category.goingShopping.cost",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "htk5p7g9rcb",
+          "label": "Can I try this on?",
+          "labelKey": "cboardPhrase.category.goingShopping.tryOn",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "j6q2m7n3blf",
+          "label": "Do you have this in a different color?",
+          "labelKey": "cboardPhrase.category.goingShopping.color",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "c9t6f7j8kla",
+          "label": "Where can I find the fitting rooms?",
+          "labelKey": "cboardPhrase.category.goingShopping.fittingRooms",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "q2s9b7f8hrt",
+          "label": "Do you accept credit cards?",
+          "labelKey": "cboardPhrase.category.goingShopping.creditCards",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "u6n2j7a8fhe",
+          "label": "Do you have a loyalty program?",
+          "labelKey": "cboardPhrase.category.goingShopping.loyaltyProgram",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "k4h9t6b8d2c",
+          "label": "Do you offer gift wrapping?",
+          "labelKey": "cboardPhrase.category.goingShopping.giftWrapping",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "t6g9h1k8j3m",
+          "label": "Can I return this if it doesn't fit?",
+          "labelKey": "cboardPhrase.category.goingShopping.returnPolicy",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "d2c9k8f6j7t",
+          "label": "What is your return policy?",
+          "labelKey": "cboardPhrase.category.goingShopping.returnPolicy2",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "f7t2c9h6j5b",
+          "label": "Can I get a discount?",
+          "labelKey": "cboardPhrase.category.goingShopping.discount",
+          "backgroundColor": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "r2e5s7t9a1u",
+      "name": "At the restaurant",
+      "nameKey": "cboardPhrase.category.restaurant",
+      "author": "Cboard",
+      "email": "support@cboard.io",
+      "isPublic": true,
+      "hidden": false,
+      "phrases": [
+        {
+          "id": "c5h9t2b7j6m",
+          "label": "Can we have a table for two?",
+          "labelKey": "cboardPhrase.category.restaurant.tableForTwo",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "s6d8h2f7t9b",
+          "label": "What do you recommend?",
+          "labelKey": "cboardPhrase.category.restaurant.recommendation",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "j8n6k1b3h7t",
+          "label": "I'm allergic to peanuts, is there any dish that doesn't contain them?",
+          "labelKey": "cboardPhrase.category.restaurant.allergy",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "a4t6e8s2r7f",
+          "label": "Could we have some water, please?",
+          "labelKey": "cboardPhrase.category.restaurant.water",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "d9j2n6h4k5f",
+          "label": "I'd like to order the steak medium-rare.",
+          "labelKey": "cboardPhrase.category.restaurant.steak",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "r5b7t1e3h9k",
+          "label": "Could we have the bill, please?",
+          "labelKey": "cboardPhrase.category.restaurant.bill",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "k7f3b2t8r6n",
+          "label": "Is there a vegetarian option?",
+          "labelKey": "cboardPhrase.category.restaurant.vegetarian",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "t6b7h8k9j1n",
+          "label": "Excuse me, could we get some more bread?",
+          "labelKey": "cboardPhrase.category.restaurant.bread",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "j3k6f8b9t2s",
+          "label": "Is there a children's menu?",
+          "labelKey": "cboardPhrase.category.restaurant.childrenMenu",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "e8t6b7h4j2n",
+          "label": "What's in the soup of the day?",
+          "labelKey": "cboardPhrase.category.restaurant.soupOfTheDay",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "f2r7n8t5h6k",
+          "label": "Could we have some more napkins, please?",
+          "labelKey": "cboardPhrase.category.restaurant.napkins",
+          "backgroundColor": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "d2c8f9g1h5",
+      "name": "At Doctor",
+      "nameKey": "cboardPhrase.category.doctor",
+      "author": "Cboard",
+      "email": "support@cboard.io",
+      "isPublic": true,
+      "hidden": false,
+      "phrases": [
+        {
+          "id": "c4d9f6h1j8",
+          "label": "I need to make an appointment",
+          "labelKey": "cboardPhrase.category.doctor.appointment",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "t6g9j4k8h1",
+          "label": "I have a fever",
+          "labelKey": "cboardPhrase.category.doctor.fever",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "f6t9h1j4c8",
+          "label": "I have a cough",
+          "labelKey": "cboardPhrase.category.doctor.cough",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "b8j3m6h1k9",
+          "label": "I have a sore throat",
+          "labelKey": "cboardPhrase.category.doctor.soreThroat",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "g1h5k8j4t6",
+          "label": "I have a headache",
+          "labelKey": "cboardPhrase.category.doctor.headache",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "j4c8t6h1f9",
+          "label": "I have an earache",
+          "labelKey": "cboardPhrase.category.doctor.earache",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "k9f6j4h1t6",
+          "label": "I have a stomach ache",
+          "labelKey": "cboardPhrase.category.doctor.stomachAche",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "h1j4t6k9f6",
+          "label": "I need a prescription refill",
+          "labelKey": "cboardPhrase.category.doctor.prescriptionRefill",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "k8f6j4h1t9",
+          "label": "When is my next appointment?",
+          "labelKey": "cboardPhrase.category.doctor.nextAppointment",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "c8f6j4h1t9",
+          "label": "What are the side effects of this medication?",
+          "labelKey": "cboardPhrase.category.doctor.medicationSideEffects",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "k9f6j4h1c8",
+          "label": "How long do I need to take this medication?",
+          "labelKey": "cboardPhrase.category.doctor.medicationDuration",
+          "backgroundColor": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "a0b1c2d3e4",
+      "name": "At Work",
+      "nameKey": "cboardPhrase.category.atWork",
+      "author": "Cboard",
+      "email": "support@cboard.io",
+      "isPublic": true,
+      "hidden": false,
+      "phrases": [
+        {
+          "id": "x0y1z2a3b4",
+          "label": "Can you please send me the report?",
+          "labelKey": "cboardPhrase.category.atWork.sendReport",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "c5d6e7f8g9",
+          "label": "What's the deadline for this project?",
+          "labelKey": "cboardPhrase.category.atWork.projectDeadline",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "h0j1k2l3m4",
+          "label": "Can we schedule a meeting to discuss this?",
+          "labelKey": "cboardPhrase.category.atWork.scheduleMeeting",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "n5p6q7r8s9",
+          "label": "I'm sorry, I didn't catch that. Could you repeat it, please?",
+          "labelKey": "cboardPhrase.category.atWork.didntCatchThat",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "t0u1v2w3x4",
+          "label": "I need help with this task, can you assist me?",
+          "labelKey": "cboardPhrase.category.atWork.needAssistance",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "y5z6a7b8c9",
+          "label": "I'm sorry, but I won't be able to make it to the meeting.",
+          "labelKey": "cboardPhrase.category.atWork.cantAttendMeeting",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "d5f6h7j8k9",
+          "label": "When is the next deadline for this task?",
+          "labelKey": "cboardPhrase.category.atWork.nextDeadline",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "m0n1p2q3r4",
+          "label": "I think we should discuss this with the manager.",
+          "labelKey": "cboardPhrase.category.atWork.discussWithManager",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "s5t6u7v8w9",
+          "label": "Could you please provide me with more details on this issue?",
+          "labelKey": "cboardPhrase.category.atWork.moreDetails",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "x0y1z2a3b4",
+          "label": "I'm sorry, but I'm not sure how to proceed with this task.",
+          "labelKey": "cboardPhrase.category.atWork.notSureHowToProceed",
+          "backgroundColor": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "h3e9t6k8p2",
+      "name": "Household Chores",
+      "nameKey": "cboardPhrase.category.householdChores",
+      "author": "Cboard",
+      "email": "support@cboard.io",
+      "isPublic": true,
+      "hidden": false,
+      "phrases": [
+        {
+          "id": "g2f9h1k8j3",
+          "label": "Please wash the dishes",
+          "labelKey": "cboardPhrase.category.householdChores.washDishes",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "d4s2g5f7h8",
+          "label": "Can you vacuum the living room?",
+          "labelKey": "cboardPhrase.category.householdChores.vacuumLivingRoom",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "t6h9k8j2d4",
+          "label": "Please take out the trash",
+          "labelKey": "cboardPhrase.category.householdChores.takeOutTrash",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "f8j2k6h9t3",
+          "label": "Can you mop the kitchen floor?",
+          "labelKey": "cboardPhrase.category.householdChores.mopKitchenFloor",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "j6t9d2k8h4",
+          "label": "Please clean the bathroom",
+          "labelKey": "cboardPhrase.category.householdChores.cleanBathroom",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "d2k8h5t6j9",
+          "label": "Can you dust the furniture?",
+          "labelKey": "cboardPhrase.category.householdChores.dustFurniture",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "g7h8t6d5f4",
+          "label": "Please do the laundry",
+          "labelKey": "cboardPhrase.category.householdChores.doLaundry",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "t6h9k8j2d5",
+          "label": "Can you water the plants?",
+          "labelKey": "cboardPhrase.category.householdChores.waterPlants",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "k8h6t2d4j9",
+          "label": "Please make the bed",
+          "labelKey": "cboardPhrase.category.householdChores.makeBed",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "f4g6h8j2k9",
+          "label": "Can you sweep the floor?",
+          "labelKey": "cboardPhrase.category.householdChores.sweepFloor",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "t9j2k8h6d4",
+          "label": "Please clean the windows",
+          "labelKey": "cboardPhrase.category.householdChores.cleanWindows",
+          "backgroundColor": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "s0c5i2a1l8",
+      "name": "Socializing",
+      "nameKey": "cboardPhrase.category.socializing",
+      "author": "Cboard",
+      "email": "support@cboard.io",
+      "isPublic": true,
+      "hidden": false,
+      "phrases": [
+        {
+          "id": "q9h5t6j3k1",
+          "label": "Hi!",
+          "labelKey": "cboardPhrase.category.socializing.hi",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "c6f5h8t2l1",
+          "label": "How are you?",
+          "labelKey": "cboardPhrase.category.socializing.howAreYou",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "j8f6l3c2h9",
+          "label": "What's up?",
+          "labelKey": "cboardPhrase.category.socializing.whatsUp",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "n2c4f7h8l9",
+          "label": "Nice to meet you!",
+          "labelKey": "cboardPhrase.category.socializing.niceToMeetYou",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "k1h8t6c4l3",
+          "label": "What do you do?",
+          "labelKey": "cboardPhrase.category.socializing.whatDoYouDo",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "b8f6c3l2h9",
+          "label": "Where are you from?",
+          "labelKey": "cboardPhrase.category.socializing.whereAreYouFrom",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "c5f2h1t8l6",
+          "label": "What are your hobbies?",
+          "labelKey": "cboardPhrase.category.socializing.hobbies",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "n9f2h8c3l4",
+          "label": "What kind of music do you like?",
+          "labelKey": "cboardPhrase.category.socializing.music",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "c2h9l6f5t8",
+          "label": "What are your favorite movies?",
+          "labelKey": "cboardPhrase.category.socializing.movies",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "h1c3t6f2l8",
+          "label": "Do you want to hang out sometime?",
+          "labelKey": "cboardPhrase.category.socializing.hangOut",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "j3c8h2t6l1",
+          "label": "What's your favorite food?",
+          "labelKey": "cboardPhrase.category.socializing.food",
+          "backgroundColor": "#FFFFFF"
+        }
+      ]
+    },
+    {
+      "id": "e9m2k6h7t3",
+      "name": "Emergencies",
+      "nameKey": "cboardPhrase.category.emergencies",
+      "author": "Cboard",
+      "email": "support@cboard.io",
+      "isPublic": true,
+      "hidden": false,
+      "phrases": [
+        {
+          "id": "f7c8b5n6k4",
+          "label": "Call an ambulance!",
+          "labelKey": "cboardPhrase.category.emergencies.callAmbulance",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "t9h6g7f4j1",
+          "label": "I need help!",
+          "labelKey": "cboardPhrase.category.emergencies.needHelp",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "p4h7g9k2c1",
+          "label": "I'm having a heart attack!",
+          "labelKey": "cboardPhrase.category.emergencies.heartAttack",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "c8b5n6k4f7",
+          "label": "I can't breathe!",
+          "labelKey": "cboardPhrase.category.emergencies.cantBreathe",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "h6g7f4j1t9",
+          "label": "I'm choking!",
+          "labelKey": "cboardPhrase.category.emergencies.choking",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "h9k2c1p4g7",
+          "label": "I've been injured!",
+          "labelKey": "cboardPhrase.category.emergencies.injured",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "b5n6k4f7c8",
+          "label": "I think I'm having a stroke!",
+          "labelKey": "cboardPhrase.category.emergencies.stroke",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "g7f4j1t9h6",
+          "label": "I'm feeling faint!",
+          "labelKey": "cboardPhrase.category.emergencies.faint",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "k2c1p4h7g9",
+          "label": "I've been poisoned!",
+          "labelKey": "cboardPhrase.category.emergencies.poisoned",
+          "backgroundColor": "#FFFFFF"
+        },
+        {
+          "id": "n6k4f7c8b5",
+          "label": "I'm having a seizure!",
+          "labelKey": "cboardPhrase.category.emergencies.seizure",
+          "backgroundColor": "#FFFFFF"
+        }
+      ]
+    }
+  ]
+}
