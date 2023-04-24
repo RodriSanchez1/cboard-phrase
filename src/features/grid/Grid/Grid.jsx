@@ -1,15 +1,39 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 import './Grid.css';
+import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
+import 'react-resizable/css/styles.css';
 
-import RGL, { WidthProvider } from 'react-grid-layout';
-
-const ReactGridLayout = WidthProvider(RGL);
+const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
 const arrlayout = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-export default function Grid() {
-  const [layout, setLayout] = useState(generateLayout(2));
+Grid.propTypes = {
+  cols: PropTypes.object,
+  breakpoints: PropTypes.object,
+  rowHeight: PropTypes.number,
+};
+
+Grid.defaultProps = {
+  rowHeight: 30,
+  cols: { lg: 3, md: 3, sm: 3, xs: 2, xxs: 2 },
+  breakpoints: { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 },
+  gap: 10,
+  containerPadding: [0, 0],
+};
+
+export default function Grid({ cols, breakpoints, rowHeight }) {
+  const [layouts, setLayouts] = useState(generateLayouts());
+
+  function generateLayouts() {
+    const layouts = {};
+    Object.keys(breakpoints).forEach((bp) => {
+      layouts[bp] = generateLayout(cols[bp]);
+    });
+    console.log(layouts);
+    return layouts;
+  }
 
   function generateLayout(cols) {
     //const layout = React.Children.map(this.props.children, (child, index) => {
@@ -38,25 +62,25 @@ export default function Grid() {
     });
   }
 
-  function onLayoutChange(layout) {
-    setLayout(layout);
+  function onLayoutChange(currentLayout, layouts) {
+    setLayouts(layouts);
   }
 
   return (
     <div className="Grid">
-      <ReactGridLayout
+      <ResponsiveReactGridLayout
         className="layout"
-        items={12}
-        rowHeight={80}
-        cols={2}
-        layout={layout}
+        items={arrlayout.length}
+        rowHeight={rowHeight}
+        cols={cols}
+        layouts={layouts}
         onLayoutChange={onLayoutChange}
-        // isDraggable={false}
+        isDraggable={false}
         isResizable={false}
         margin={[10, 10]}
       >
         {generateDOM()}
-      </ReactGridLayout>
+      </ResponsiveReactGridLayout>
     </div>
   );
 }
