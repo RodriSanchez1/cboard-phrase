@@ -1,4 +1,10 @@
 .Grid {
+  position: relative;
   height: 100%;
-  width: 100%;
+  z-index: 4;
+  flex: 1 1;
+  background: #5c5c5d;
+  direction: ltr;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
