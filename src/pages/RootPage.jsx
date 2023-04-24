@@ -6,11 +6,11 @@ import AppGrid from '../features/grid/AppGrid';
 
 export default function RootPage() {
   return (
-    <>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <AppHeader />
       <CategoriesBar />
       <AppGrid />
       <Outlet />
-    </>
+    </div>
   );
 }
