@@ -16,7 +16,7 @@ Grid.propTypes = {
 };
 
 Grid.defaultProps = {
-  rowHeight: 30,
+  rowHeight: 80,
   cols: { lg: 3, md: 3, sm: 3, xs: 2, xxs: 2 },
   breakpoints: { lg: 1200, md: 996, sm: 768, xs: 480, xxs: 0 },
   gap: 10,
