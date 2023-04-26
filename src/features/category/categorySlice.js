@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createSelector } from '@reduxjs/toolkit';
 
 import { DEFAULT_CATEGORIES } from './category.constants';
 
@@ -21,5 +21,24 @@ export const categorySlice = createSlice({
 });
 
 export const { setActiveCategoryId, addCategory } = categorySlice.actions;
+
+const selectCategories = (state) => state.category;
+
+export const selectAllCategories = createSelector(
+  [selectCategories],
+  (category) => category.categories
+);
+
+export const selectActiveCategoryId = createSelector(
+  [selectCategories],
+  (category) => category.activeCategoryId
+);
+
+export const selectPhrases = createSelector(
+  selectAllCategories,
+  selectActiveCategoryId,
+  (categories, activeCategoryId) =>
+    categories.filter((cat) => cat.id === activeCategoryId)[0].phrases
+);
 
 export default categorySlice.reducer;

@@ -1,26 +1,20 @@
 import { Box } from '@mui/material';
 import { Button } from '@mui/material';
-import { useState } from 'react';
 import './CategoriesBar.css';
-
-const initialCategories = [
-  { id: 1, name: 'Common phrases', active: true },
-  { id: 2, name: 'Going shopping', active: false },
-  { id: 3, name: 'Doctor visit', active: false },
-  { id: 4, name: 'At the restaurant', active: false },
-  { id: 5, name: 'At the hotel', active: false },
-  { id: 6, name: 'At the airport', active: false },
-];
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  selectActiveCategoryId,
+  selectAllCategories,
+  setActiveCategoryId,
+} from '../categorySlice';
 
 export default function CategoriesBar() {
-  const [categories, setCategories] = useState(initialCategories);
+  const dispatch = useDispatch();
+  const categories = useSelector(selectAllCategories);
+  const activeCategoryId = useSelector(selectActiveCategoryId);
 
   const handleClick = (category) => {
-    const updatedCategories = categories.map((c) => ({
-      ...c,
-      active: c.id === category.id,
-    }));
-    setCategories(updatedCategories);
+    dispatch(setActiveCategoryId(category.id));
   };
 
   return (
@@ -32,7 +26,7 @@ export default function CategoriesBar() {
           backgroundColor: '#FFF',
           borderRadius: 1,
           display: 'flex',
-          overflowX: 'auto',
+          overflowX: 'hidden',
           alignItems: 'center',
         }}
       >
@@ -40,7 +34,9 @@ export default function CategoriesBar() {
           <Button
             key={category.id}
             color="secondary"
-            variant={category.active ? 'contained' : 'outlined'}
+            variant={
+              category.id === activeCategoryId ? 'contained' : 'outlined'
+            }
             onClick={() => handleClick(category)}
             sx={{ margin: '0 5px', whiteSpace: 'nowrap', minWidth: '150px' }}
           >
