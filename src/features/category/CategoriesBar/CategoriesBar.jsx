@@ -1,17 +1,19 @@
-import { Box } from '@mui/material';
-import { Button } from '@mui/material';
 import './CategoriesBar.css';
 import { useSelector, useDispatch } from 'react-redux';
-import {
-  selectActiveCategoryId,
-  selectAllCategories,
-  setActiveCategoryId,
-} from '../categorySlice';
+import { selectAllCategories, setActiveCategoryId } from '../categorySlice';
+import { Box, Tab, Tabs, tabsClasses } from '@mui/material';
+
+import { useState } from 'react';
 
 export default function CategoriesBar() {
   const dispatch = useDispatch();
   const categories = useSelector(selectAllCategories);
-  const activeCategoryId = useSelector(selectActiveCategoryId);
+
+  const [value, setValue] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
 
   const handleClick = (category) => {
     dispatch(setActiveCategoryId(category.id));
@@ -30,19 +32,35 @@ export default function CategoriesBar() {
           alignItems: 'center',
         }}
       >
-        {categories.map((category) => (
-          <Button
-            key={category.id}
-            color="secondary"
-            variant={
-              category.id === activeCategoryId ? 'contained' : 'outlined'
-            }
-            onClick={() => handleClick(category)}
-            sx={{ margin: '0 5px', whiteSpace: 'nowrap', minWidth: '150px' }}
-          >
-            {category.name}
-          </Button>
-        ))}
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          variant="scrollable"
+          scrollButtons="auto"
+          aria-label="scrollable auto tabs example"
+          indicatorColor="secondary"
+          textColor="secondary"
+          sx={{
+            [`& .${tabsClasses.scrollButtons}`]: {
+              '&.Mui-disabled': { opacity: 0.3 },
+            },
+          }}
+        >
+          {categories.map((category) => (
+            <Tab
+              key={category.id}
+              onClick={() => handleClick(category)}
+              sx={{
+                minWidth: '150px',
+                // ...(category.id === activeCategoryId && {
+                //   border: '3px solid #ce93d8',
+                // }),
+              }}
+              label={category.name}
+              wrapped
+            />
+          ))}
+        </Tabs>
       </Box>
     </div>
   );
