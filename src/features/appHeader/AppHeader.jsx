@@ -1,11 +1,11 @@
 import './AppHeader.css';
-import VoiceTextField from './VoiceTextField/VoiceTextField';
+import Output from '../output/Output';
 import CommandBlock from './CommandBlock/CommandBlock';
 
 export default function AppHeader() {
   return (
     <div className="AppHeader_Container">
-      <VoiceTextField />
+      <Output />
       <CommandBlock />
     </div>
   );
