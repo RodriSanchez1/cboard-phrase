@@ -1,7 +1,13 @@
 import TextField from '@mui/material/TextField';
 import './VoiceTextField.css';
+import propTypes from 'prop-types';
 
-export default function VoiceTextField() {
+VoiceTextField.propTypes = {
+  onChange: propTypes.func.isRequired,
+  outputText: propTypes.string.isRequired,
+};
+
+export default function VoiceTextField({ onChange, outputText }) {
   return (
     <div className="VoiceTextField">
       <TextField
@@ -12,6 +18,8 @@ export default function VoiceTextField() {
         multiline
         rows={4}
         fullWidth
+        onChange={onChange}
+        value={outputText}
       />
     </div>
   );
