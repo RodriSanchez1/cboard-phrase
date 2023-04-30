@@ -32,6 +32,8 @@ export const webSpeech = {
       webSpeech.getVoices().then((voices) => {
         const voice = voices.find((voice) => voice.voiceURI === voiceURI);
 
+        synth.cancel();
+
         const utterance = Object.assign(
           new window.SpeechSynthesisUtterance(text),
           options,
@@ -45,5 +47,8 @@ export const webSpeech = {
         synth.speak(utterance);
       });
     });
+  },
+  cancel: () => {
+    synth.cancel();
   },
 };
