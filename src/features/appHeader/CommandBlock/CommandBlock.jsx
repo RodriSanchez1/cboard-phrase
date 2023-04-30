@@ -8,25 +8,24 @@ import EditIcon from '@mui/icons-material/Edit';
 import BackspaceIcon from '@mui/icons-material/Backspace';
 import './CommandBlock.css';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { speak } from '../../../features/speech/speechSlice';
+import {
+  selectText,
+  clear as clearOutput,
+  backSpace,
+} from '../../output/ouputSlice';
 
 export default function CommandBlock() {
   const dispatch = useDispatch();
+  const output = useSelector(selectText);
 
   const commandBlockItems = [
     {
       name: 'Speak',
       icon: <VolumeUpIcon />,
       onClick: () => {
-        dispatch(speak('Hola que tal'));
-      },
-    },
-    {
-      name: 'Clear',
-      icon: <ClearIcon />,
-      onClick: () => {
-        console.log('Clear');
+        dispatch(speak(output));
       },
     },
     {
@@ -37,6 +36,13 @@ export default function CommandBlock() {
       },
     },
     {
+      name: 'Clear',
+      icon: <ClearIcon />,
+      onClick: () => {
+        dispatch(clearOutput());
+      },
+    },
+    {
       name: 'Settings',
       icon: <SettingsIcon />,
       onClick: () => {
@@ -44,17 +50,17 @@ export default function CommandBlock() {
       },
     },
     {
+      name: 'Backspace',
+      icon: <BackspaceIcon />,
+      onClick: () => {
+        dispatch(backSpace());
+      },
+    },
+    {
       name: 'Edit',
       icon: <EditIcon />,
       onClick: () => {
         console.log('Edit');
-      },
-    },
-    {
-      name: 'Backspace',
-      icon: <BackspaceIcon />,
-      onClick: () => {
-        console.log('Backspace');
       },
     },
   ];
