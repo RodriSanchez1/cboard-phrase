@@ -1,0 +1,12 @@
+.AppHeader_Container {
+  background-color: #5c5c5d;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 170px;
+  min-height: 30px;
+  max-height: 200px;
+}

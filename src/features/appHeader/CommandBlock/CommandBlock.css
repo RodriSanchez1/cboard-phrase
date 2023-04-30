@@ -1,0 +1,5 @@
+.CommandBlock_Container {
+  width: 150px;
+  flex-grow: 0;
+  margin-right: 20px;
+}

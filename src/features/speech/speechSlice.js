@@ -51,6 +51,9 @@ export const speechSlice = createSlice({
     builder.addCase(speak.rejected, (state) => {
       state.isSpeaking = false;
     });
+    builder.addCase('output/clear', () => {
+      webSpeech.cancel();
+    });
   },
 });
 
@@ -73,7 +76,7 @@ export const speak = createAsyncThunk(
   'speech/speak',
   async (text, thunkAPI) => {
     const { speech } = thunkAPI.getState();
-    webSpeech.speak(text, speech.options);
+    await webSpeech.speak(text, speech.options);
   }
 );
 
