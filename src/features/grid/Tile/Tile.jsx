@@ -2,20 +2,22 @@ import PropTypes from 'prop-types';
 import './Tile.css';
 
 Tile.propTypes = {
-  phrase: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
+  backgroundColor: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
 };
 
-export default function Tile({ phrase }) {
+export default function Tile({ backgroundColor, onClick, label }) {
   return (
     <button
       style={{
-        backgroundColor: phrase.backgroundColor,
+        backgroundColor: backgroundColor,
       }}
       className="Tile"
       type="button"
-      onClick={() => console.log('clicked')}
+      onClick={onClick}
     >
-      {phrase.label}
+      {label}
     </button>
   );
 }
