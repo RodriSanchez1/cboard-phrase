@@ -17,10 +17,16 @@ export const categorySlice = createSlice({
     addCategory: (state, action) => {
       state.categories.push(action.payload);
     },
+    updateCategory: (state, action) => {
+      const { id, name } = action.payload;
+      const category = state.categories.find((cat) => cat.id === id);
+      category.name = name;
+    },
   },
 });
 
-export const { setActiveCategoryId, addCategory } = categorySlice.actions;
+export const { setActiveCategoryId, addCategory, updateCategory } =
+  categorySlice.actions;
 
 const selectCategories = (state) => state.category;
 
