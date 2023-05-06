@@ -8,7 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import CloseIcon from '@mui/icons-material/Close';
 import Slide from '@mui/material/Slide';
-import { useNavigate } from 'react-router';
+//import { useNavigate } from 'react-router';
 
 FullScreenDialog.propTypes = {
   disableSubmit: PropTypes.bool,
@@ -19,6 +19,7 @@ FullScreenDialog.propTypes = {
   onSubmit: PropTypes.func,
   className: PropTypes.string,
   children: PropTypes.node,
+  onSave: PropTypes.func,
 };
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -58,14 +59,18 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 // };
 
 function FullScreenDialog(props) {
-  const { children, fullWidth, title } = props;
+  const { children, fullWidth, title, onSave, onClose } = props;
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
   // const theme = useTheme();
   //const dark = theme.palette.type === 'dark' ? true : false;
 
   const handleClose = () => {
-    navigate(-1);
+    onClose();
+  };
+
+  const handleSave = () => {
+    onSave();
   };
 
   return (
@@ -89,7 +94,7 @@ function FullScreenDialog(props) {
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
               {title}
             </Typography>
-            <Button color="inherit" onClick={handleClose}>
+            <Button color="inherit" onClick={handleSave}>
               save
             </Button>
           </Toolbar>
