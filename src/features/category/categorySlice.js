@@ -18,21 +18,39 @@ export const categorySlice = createSlice({
       state.categories.push(action.payload);
     },
     updateCategory: (state, action) => {
-      const { id, name } = action.payload;
-      const category = state.categories.find((cat) => cat.id === id);
-      category.name = name;
+      const { id } = action.payload;
+      const categoryIndex = state.categories.findIndex((cat) => cat.id === id);
+      state.categories[categoryIndex] = action.payload;
+    },
+    deleteCategory: (state, action) => {
+      const { id } = action.payload;
+      const categoryIndex = state.categories.findIndex((cat) => cat.id === id);
+      state.categories.splice(categoryIndex, 1);
     },
   },
 });
 
-export const { setActiveCategoryId, addCategory, updateCategory } =
-  categorySlice.actions;
+export const {
+  setActiveCategoryId,
+  addCategory,
+  updateCategory,
+  deleteCategory,
+} = categorySlice.actions;
 
 const selectCategories = (state) => state.category;
 
+const selectActiveCommunicator = (state) => {
+  const communicators = state.communicator.communicators;
+  const activeCommunicatorId = state.communicator.activeCommunicatorId;
+  return communicators.filter((com) => com.id === activeCommunicatorId)[0];
+};
+
 export const selectAllCategories = createSelector(
-  [selectCategories],
-  (category) => category.categories
+  [selectCategories, selectActiveCommunicator],
+  (category, communicator) =>
+    category.categories.filter((cat) =>
+      communicator.categories.includes(cat.id)
+    )
 );
 
 export const selectActiveCategoryId = createSelector(
