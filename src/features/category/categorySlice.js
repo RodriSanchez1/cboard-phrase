@@ -2,6 +2,8 @@ import { createSlice, createSelector } from '@reduxjs/toolkit';
 
 import { DEFAULT_CATEGORIES } from './category.constants';
 
+import { selectActiveCommunicator } from '../communicator/communicatorSlice';
+
 const initialState = {
   categories: DEFAULT_CATEGORIES,
   activeCategoryId: DEFAULT_CATEGORIES[0].id,
@@ -27,6 +29,15 @@ export const categorySlice = createSlice({
       const categoryIndex = state.categories.findIndex((cat) => cat.id === id);
       state.categories.splice(categoryIndex, 1);
     },
+    updateCategories: (state, action) => {
+      const newCategories = action.payload;
+      const activeCategoryExists = newCategories.find(
+        (cat) => cat.id === state.activeCategoryId
+      );
+      if (!activeCategoryExists)
+        state.activeCategoryId = newCategories[0]?.id || '';
+      state.categories = newCategories;
+    },
   },
 });
 
@@ -35,15 +46,10 @@ export const {
   addCategory,
   updateCategory,
   deleteCategory,
+  updateCategories,
 } = categorySlice.actions;
 
 const selectCategories = (state) => state.category;
-
-const selectActiveCommunicator = (state) => {
-  const communicators = state.communicator.communicators;
-  const activeCommunicatorId = state.communicator.activeCommunicatorId;
-  return communicators.filter((com) => com.id === activeCommunicatorId)[0];
-};
 
 export const selectAllCategories = createSelector(
   [selectCategories, selectActiveCommunicator],

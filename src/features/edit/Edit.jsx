@@ -26,7 +26,7 @@ import {
   selectAllCategories,
   selectActiveCategoryId,
   updateCategory,
-  deleteCategory,
+  updateCategories,
 } from '../category/categorySlice';
 import { useDispatch } from 'react-redux';
 import EditPhraseModal from './EditPhraseModal/EditPhraseModal';
@@ -43,7 +43,9 @@ export default function Edit() {
   const activeCategoryId = useSelector(selectActiveCategoryId);
   const categories = useSelector(selectAllCategories);
 
-  const activeCategory = categories.find(
+  const [editingCategories, setEditingCategories] = useState([...categories]);
+
+  const activeCategory = editingCategories.find(
     (category) => category.id === activeCategoryId
   );
 
@@ -61,7 +63,7 @@ export default function Edit() {
   });
 
   const handleSelectChange = (event) => {
-    const selectedCategory = categories.find(
+    const selectedCategory = editingCategories.find(
       (cat) => event.target.value === cat.id
     );
     setEditingCategory(selectedCategory);
@@ -86,7 +88,8 @@ export default function Edit() {
       }
       return phrase;
     });
-    setEditingCategory({ ...editingCategory, phrases: newPhrases });
+    const newCategory = { ...editingCategory, phrases: newPhrases };
+    setEditingCategory(newCategory);
     setIsOpenEditPhraseModal(false);
   };
 
@@ -95,10 +98,10 @@ export default function Edit() {
   };
 
   const handleSaveEditCategory = (newCategory) => {
+    const isChanged = newCategory.name !== editingCategory.name;
+    setIsModified(isChanged);
     setEditingCategory({ ...newCategory });
     setIsOpenEditCategoryModal(false);
-    const isChanged = newCategory.name !== activeCategory.name;
-    setIsModified(isChanged);
   };
 
   const handleDeleteElementClick = (element, type) => {
@@ -107,9 +110,14 @@ export default function Edit() {
   };
 
   const handleDeleteElement = () => {
-    // if (deletingElement.type === CATEGORY) {
-    //   dispatch(deleteCategory(deletingElement.element));
-    // }
+    if (deletingElement.type === CATEGORY) {
+      const newCategories = editingCategories.filter(
+        (category) => category.id !== deletingElement.element.id
+      );
+      setEditingCategories(newCategories);
+      setEditingCategory(newCategories[0]);
+      setIsModified(false);
+    }
     if (deletingElement.type === PHRASE) {
       const newPhrases = editingCategory.phrases.filter(
         (phrase) => phrase.id !== deletingElement.element.id
@@ -120,8 +128,15 @@ export default function Edit() {
   };
 
   const handleSave = () => {
-    const newCategory = { ...editingCategory };
-    dispatch(updateCategory(newCategory));
+    if (categories.length === editingCategories.length) {
+      const newCategory = { ...editingCategory };
+      dispatch(updateCategory(newCategory));
+    } else {
+      const newCategories = editingCategories.map((category) =>
+        category.id === editingCategory.id ? editingCategory : category
+      );
+      dispatch(updateCategories(newCategories));
+    }
     navigate(-1);
   };
 
@@ -150,13 +165,13 @@ export default function Edit() {
               <Select
                 labelId="select-category-label"
                 id="select-category-label-id"
-                value={editingCategory.id || ''}
-                label={editingCategory.name || ''}
+                value={editingCategory?.id || ''}
+                label={editingCategory?.name || ''}
                 onChange={handleSelectChange}
                 input={<OutlinedInput label="Category" />}
                 disabled={isModified}
               >
-                {categories.map((category) => {
+                {editingCategories.map((category) => {
                   return (
                     <MenuItem key={category.id} value={category.id}>
                       {category.name}
@@ -178,10 +193,10 @@ export default function Edit() {
             <ListItemIcon>
               <ClassIcon />
             </ListItemIcon>
-            <ListItemText primary={editingCategory.name} />
+            <ListItemText primary={editingCategory?.name || 'None'} />
             <ListItemIcon
               sx={{ minWidth: '25px' }}
-              phraseid={editingCategory.id}
+              phraseid={editingCategory?.id}
             >
               <IconButton
                 onClick={() => handleEditCategoryClick(editingCategory)}
@@ -195,7 +210,7 @@ export default function Edit() {
                   handleDeleteElementClick(editingCategory, CATEGORY)
                 }
               >
-                <DeleteIcon phraseid={editingCategory.id} />
+                <DeleteIcon phraseid={editingCategory?.id} />
               </IconButton>
             </ListItemIcon>
           </ListItem>
@@ -203,7 +218,7 @@ export default function Edit() {
       </Paper>
       <Paper elevation={3} sx={{ mt: 1, mb: 2 }}>
         <List subheader={<ListSubheader disableSticky>Phrases</ListSubheader>}>
-          {editingCategory.phrases.map((phrase, index) => {
+          {editingCategory?.phrases.map((phrase, index) => {
             const white = '#ffffff';
             const WHITE = '#FFFFFF';
             const action = 'action';
