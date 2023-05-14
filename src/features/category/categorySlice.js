@@ -2,6 +2,8 @@ import { createSlice, createSelector } from '@reduxjs/toolkit';
 
 import { DEFAULT_CATEGORIES } from './category.constants';
 
+import { selectActiveCommunicator } from '../communicator/communicatorSlice';
+
 const initialState = {
   categories: DEFAULT_CATEGORIES,
   activeCategoryId: DEFAULT_CATEGORIES[0].id,
@@ -17,16 +19,44 @@ export const categorySlice = createSlice({
     addCategory: (state, action) => {
       state.categories.push(action.payload);
     },
+    updateCategory: (state, action) => {
+      const { id } = action.payload;
+      const categoryIndex = state.categories.findIndex((cat) => cat.id === id);
+      state.categories[categoryIndex] = action.payload;
+    },
+    deleteCategory: (state, action) => {
+      const { id } = action.payload;
+      const categoryIndex = state.categories.findIndex((cat) => cat.id === id);
+      state.categories.splice(categoryIndex, 1);
+    },
+    updateCategories: (state, action) => {
+      const newCategories = action.payload;
+      const activeCategoryExists = newCategories.find(
+        (cat) => cat.id === state.activeCategoryId
+      );
+      if (!activeCategoryExists)
+        state.activeCategoryId = newCategories[0]?.id || '';
+      state.categories = newCategories;
+    },
   },
 });
 
-export const { setActiveCategoryId, addCategory } = categorySlice.actions;
+export const {
+  setActiveCategoryId,
+  addCategory,
+  updateCategory,
+  deleteCategory,
+  updateCategories,
+} = categorySlice.actions;
 
 const selectCategories = (state) => state.category;
 
 export const selectAllCategories = createSelector(
-  [selectCategories],
-  (category) => category.categories
+  [selectCategories, selectActiveCommunicator],
+  (category, communicator) =>
+    category.categories.filter((cat) =>
+      communicator.categories.includes(cat.id)
+    )
 );
 
 export const selectActiveCategoryId = createSelector(

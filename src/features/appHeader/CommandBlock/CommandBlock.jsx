@@ -15,9 +15,11 @@ import {
   clear as clearOutput,
   backSpace,
 } from '../../output/ouputSlice';
+import { useNavigate } from 'react-router-dom';
 
 export default function CommandBlock() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const output = useSelector(selectText);
 
   const commandBlockItems = [
@@ -60,7 +62,7 @@ export default function CommandBlock() {
       name: 'Edit',
       icon: <EditIcon />,
       onClick: () => {
-        console.log('Edit');
+        navigate('edit');
       },
     },
   ];

@@ -1,0 +1,14 @@
+div[title='#FFFFFF'] {
+  border: 1px solid #000000;
+  /* box-shadow: rgb(45, 12, 231) 0px 0px 0px 3px inset !important; */
+}
+
+.colorContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.circle-picker {
+  justify-content: center;
+}
