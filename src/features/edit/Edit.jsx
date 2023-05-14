@@ -14,11 +14,13 @@ import {
   OutlinedInput,
   IconButton,
   Divider,
+  Button,
 } from '@mui/material';
 import TextsmsIcon from '@mui/icons-material/Textsms';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ClassIcon from '@mui/icons-material/Class';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 import './Edit.css';
 import { useSelector } from 'react-redux';
@@ -33,6 +35,7 @@ import EditPhraseModal from './EditPhraseModal/EditPhraseModal';
 import EditCategoryModal from './EditCategoryModal/EditCategoryModal';
 import CancelModal from '../../components/CancelModal/CancelModal';
 import DeleteModal from './DeleteModal/DeleteModal';
+import AddModal from './AddModal/AddModal';
 import { useNavigate } from 'react-router';
 import { PHRASE, CATEGORY } from './Edit.const';
 
@@ -57,6 +60,10 @@ export default function Edit() {
   const [isOpenEditPhraseModal, setIsOpenEditPhraseModal] = useState(false);
   const [isOpenEditCategoryModal, setIsOpenEditCategoryModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+  const [openAddModal, setOpenAddModal] = useState({
+    isOpen: false,
+    type: '',
+  });
   const [deletingElement, setDeletingElement] = useState({
     element: {},
     type: '',
@@ -127,6 +134,26 @@ export default function Edit() {
     setIsOpenDeleteModal(false);
   };
 
+  const handleAddElementClick = (type) => {
+    setOpenAddModal({ isOpen: true, type });
+  };
+
+  const handleAddElement = (newElement) => {
+    console.log(newElement);
+    const type = openAddModal.type;
+    if (type === CATEGORY) {
+      const newCategories = [...editingCategories, newElement];
+      setEditingCategories(newCategories);
+      setEditingCategory(newElement);
+    }
+    if (type === PHRASE) {
+      const newPhrases = [...editingCategory.phrases, newElement];
+      setEditingCategory({ ...editingCategory, phrases: newPhrases });
+    }
+    setOpenAddModal({ isOpen: false, type: '' });
+    setIsModified(true);
+  };
+
   const handleSave = () => {
     if (categories.length === editingCategories.length) {
       const newCategory = { ...editingCategory };
@@ -157,7 +184,19 @@ export default function Edit() {
     >
       <Paper elevation={3}>
         <List
-          subheader={<ListSubheader disableSticky>Categories</ListSubheader>}
+          subheader={
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <ListSubheader disableSticky>Categories</ListSubheader>
+              <Button
+                //variant="outlined"
+                startIcon={<AddCircleIcon />}
+                sx={{ mr: '10px' }}
+                onClick={() => handleAddElementClick(CATEGORY)}
+              >
+                ADD CATEGORY
+              </Button>
+            </div>
+          }
         >
           <ListItem>
             <FormControl sx={{ minWidth: 300 }}>
@@ -217,7 +256,22 @@ export default function Edit() {
         </List>
       </Paper>
       <Paper elevation={3} sx={{ mt: 1, mb: 2 }}>
-        <List subheader={<ListSubheader disableSticky>Phrases</ListSubheader>}>
+        <List
+          subheader={
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <ListSubheader disableSticky>Phrases</ListSubheader>
+              <Button
+                //variant="outlined"
+                startIcon={<AddCircleIcon />}
+                size="small"
+                sx={{ mr: '10px' }}
+                onClick={() => handleAddElementClick(PHRASE)}
+              >
+                ADD PHRASE
+              </Button>
+            </div>
+          }
+        >
           {editingCategory?.phrases.map((phrase, index) => {
             const white = '#ffffff';
             const WHITE = '#FFFFFF';
@@ -232,6 +286,7 @@ export default function Edit() {
                     <TextsmsIcon sx={{ color: bgColor }} />
                   </ListItemIcon>
                   <ListItemText primary={phrase.label} />
+
                   <ListItemIcon sx={{ minWidth: '25px' }}>
                     <IconButton onClick={() => handleEditPhraseClick(phrase)}>
                       <EditIcon />
@@ -255,7 +310,8 @@ export default function Edit() {
             open={isOpenEditPhraseModal}
             onClose={setIsOpenEditPhraseModal}
             phrase={editingPhrase}
-            handleSaveEditPhrase={handleSaveEditPhrase}
+            handleSave={handleSaveEditPhrase}
+            title={'Edit'}
           />
         )}
         {isOpenEditCategoryModal && (
@@ -263,7 +319,8 @@ export default function Edit() {
             open={isOpenEditCategoryModal}
             onClose={setIsOpenEditCategoryModal}
             category={editingCategory}
-            handleSaveEditCategory={handleSaveEditCategory}
+            handleSave={handleSaveEditCategory}
+            title={'Edit'}
           />
         )}
 
@@ -280,6 +337,14 @@ export default function Edit() {
             onDeleteElement={handleDeleteElement}
             name={deletingElement.element.label || deletingElement.element.name}
             type={deletingElement.type}
+          />
+        )}
+        {openAddModal.isOpen && (
+          <AddModal
+            open={openAddModal.isOpen}
+            type={openAddModal.type}
+            setOpenAddModal={setOpenAddModal}
+            onAddElement={handleAddElement}
           />
         )}
       </Paper>
