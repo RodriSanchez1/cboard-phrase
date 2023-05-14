@@ -16,14 +16,16 @@ EditCategoryModal.propTypes = {
   open: propTypes.bool.isRequired,
   onClose: propTypes.func.isRequired,
   category: propTypes.object.isRequired,
-  handleSaveEditCategory: propTypes.func.isRequired,
+  handleSave: propTypes.func.isRequired,
+  title: propTypes.string.isRequired,
 };
 
 export default function EditCategoryModal({
   open,
   onClose,
   category,
-  handleSaveEditCategory,
+  handleSave,
+  title,
 }) {
   const [editingCategory, setEditingCategory] = useState({ ...category });
 
@@ -35,19 +37,19 @@ export default function EditCategoryModal({
     setEditingCategory({ ...editingCategory, name: event.target.value });
   };
 
-  const handleSave = () => {
+  const onSave = () => {
     const newCategory = { ...editingCategory };
     if (editingCategory.name !== category.name) {
       newCategory.nameKey = '';
     }
-    handleSaveEditCategory(newCategory);
+    handleSave(newCategory);
   };
 
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth={true}>
-      <DialogTitle>Edit Category</DialogTitle>
+      <DialogTitle>{title} Category</DialogTitle>
       <DialogContent>
-        <DialogContentText>Category</DialogContentText>
+        <DialogContentText>Name</DialogContentText>
         <TextField
           margin="dense"
           id="phrase"
@@ -59,7 +61,7 @@ export default function EditCategoryModal({
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleSave}>Save</Button>
+        <Button onClick={onSave}>Save</Button>
       </DialogActions>
     </Dialog>
   );

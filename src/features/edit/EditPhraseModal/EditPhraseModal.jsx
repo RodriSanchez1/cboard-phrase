@@ -17,7 +17,8 @@ EditPhraseModal.propTypes = {
   open: propTypes.bool.isRequired,
   onClose: propTypes.func.isRequired,
   phrase: propTypes.object.isRequired,
-  handleSaveEditPhrase: propTypes.func.isRequired,
+  handleSave: propTypes.func.isRequired,
+  title: propTypes.string.isRequired,
 };
 
 const colors = [
@@ -36,7 +37,8 @@ export default function EditPhraseModal({
   open,
   onClose,
   phrase,
-  handleSaveEditPhrase,
+  handleSave,
+  title,
 }) {
   const [editingPhrase, setEditingPhrase] = useState({ ...phrase });
 
@@ -57,17 +59,17 @@ export default function EditPhraseModal({
     setEditingPhrase({ ...editingPhrase, backgroundColor: color.hex });
   };
 
-  const handleSave = () => {
+  const onSave = () => {
     const newPhrase = { ...editingPhrase };
     if (editingPhrase.label !== phrase.label) {
       newPhrase.labelKey = '';
     }
-    handleSaveEditPhrase(newPhrase);
+    handleSave(newPhrase);
   };
 
   return (
     <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth={true}>
-      <DialogTitle>Edit Phrase</DialogTitle>
+      <DialogTitle>{title} Phrase</DialogTitle>
       <DialogContent>
         <DialogContentText>Phrase</DialogContentText>
         <TextField
@@ -92,7 +94,7 @@ export default function EditPhraseModal({
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancel</Button>
-        <Button onClick={handleSave}>Save</Button>
+        <Button onClick={onSave}>Save</Button>
       </DialogActions>
     </Dialog>
   );
