@@ -1,5 +1,4 @@
-import SpeechSettings from '../features/speech/SpeechSettings';
-
+import Settings from '../features/settings/Settings';
 export default function SettingsPage() {
-  return <SpeechSettings />;
+  return <Settings />;
 }
