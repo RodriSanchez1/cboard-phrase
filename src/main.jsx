@@ -6,6 +6,7 @@ import { store } from './app/store';
 import { router } from './app/router';
 import SpeechProvider from './features/speech/SpeechProvider';
 import ThemeProvider from './features/theme/ThemeProvider';
+import LanguageProvider from './features/language/LanguageProvider';
 import './index.css';
 
 if (process.env.NODE_ENV === 'development') {
@@ -18,7 +19,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <ThemeProvider>
         <SpeechProvider>
-          <RouterProvider router={router} />
+          <LanguageProvider>
+            <RouterProvider router={router} />
+          </LanguageProvider>
         </SpeechProvider>
       </ThemeProvider>
     </Provider>
