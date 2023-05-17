@@ -9,9 +9,12 @@ import {
   ListItemSecondaryAction,
   Divider,
 } from '@mui/material';
+import { FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 SettingsSection.propTypes = {
+  subheader: PropTypes.object.isRequired,
   settings: PropTypes.array,
 };
 
@@ -19,17 +22,13 @@ SettingsSection.defaultProps = {
   settings: [],
 };
 
-export default function SettingsSection() {
-  const { subheader, settings } = this.props;
-  //const settingsLength = settings.length;
-
+export default function SettingsSection({ subheader, settings }) {
   return (
-    <Paper className="Settings__section">
+    <Paper className="Settings__section" elevation={3} sx={{ mt: 1 }}>
       <List
         subheader={
           <ListSubheader>
-            {/* <FormattedMessage {...subheader} /> */}
-            {subheader}
+            <FormattedMessage {...subheader} />
           </ListSubheader>
         }
       >
@@ -39,25 +38,20 @@ export default function SettingsSection() {
             onClick: item.onClick,
           };
 
-          //   if (item.url) {
-          //     listItemProps.component = Link;
-          //     listItemProps.to = item.url;
-          //   }
+          if (item.url) {
+            listItemProps.component = Link;
+            listItemProps.to = item.url;
+          }
 
           return (
             <Fragment key={index}>
               <ListItem {...listItemProps}>
-                <div
-                  className="Settings__Item__Container"
-                  id={item.text.defaultMessage}
-                >
-                  <ListItemIcon>{item.icon}</ListItemIcon>
-                  <ListItemText
-                    // primary={<FormattedMessage {...item.text} />}
-                    primary={item.text}
-                    secondary={item.secondary}
-                  />
-                </div>
+                <ListItemIcon>{item.icon}</ListItemIcon>
+                <ListItemText
+                  primary={<FormattedMessage {...item.text} />}
+                  secondary={item.secondary}
+                />
+                {/* </div> */}
                 {item.rightContent && (
                   <ListItemSecondaryAction className="Settings__section--secondaryAction">
                     {item.rightContent}
