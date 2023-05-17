@@ -3,6 +3,7 @@ import Slider from '@mui/material/Slider';
 import { useDispatch, useSelector } from 'react-redux';
 import { setVolume } from '../speechSlice';
 import { MAX_VOLUME, MIN_VOLUME } from '../tts-engines/webSpeech';
+import './controls.css';
 
 export default function VolumeSlider() {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ export default function VolumeSlider() {
   }
 
   return (
-    <div>
+    <div className="Speech_Slider">
       <Typography id="volume-slider" gutterBottom>
         Speaking volume
       </Typography>

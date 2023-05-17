@@ -4,6 +4,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectSpeechLanguages, setLang } from '../speechSlice';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 export default function SpeechLanguageSelect() {
   const dispatch = useDispatch();
@@ -16,10 +17,10 @@ export default function SpeechLanguageSelect() {
   }
 
   return (
-    <FormControl fullWidth>
+    <FormControl sx={{ minWidth: '80%' }}>
       <InputLabel id="language-select-label">Speech language</InputLabel>
       <Select
-        label="Language"
+        label="Speech language"
         labelId="language-select-label"
         value={lang}
         onChange={handleChange}

@@ -3,6 +3,7 @@ import Slider from '@mui/material/Slider';
 import { useDispatch, useSelector } from 'react-redux';
 import { setRate } from '../speechSlice';
 import { MAX_RATE, MIN_RATE } from '../tts-engines/webSpeech';
+import './controls.css';
 
 export default function RateSlider() {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ export default function RateSlider() {
   }
 
   return (
-    <div>
+    <div className="Speech_Slider">
       <Typography id="rate-slider" gutterBottom>
         Speaking rate
       </Typography>
