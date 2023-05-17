@@ -3,6 +3,7 @@ import ErrorPage from '../pages/ErrorPage';
 import RootPage from '../pages/RootPage';
 import SettingsPage from '../pages/SettingsPage';
 import EditPage from '../pages/EditPage';
+import SpeechSettings from '../features/speech/SpeechSettings';
 
 export const router = createBrowserRouter([
   {
@@ -11,11 +12,22 @@ export const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: 'settings',
-        element: <SettingsPage />,
+        path: 'edit',
+        element: <EditPage />,
+      },
+    ],
+  },
+  {
+    path: '/settings',
+    element: <SettingsPage />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: 'speech',
+        element: <SpeechSettings />,
       },
       {
-        path: 'edit',
+        path: 'language',
         element: <EditPage />,
       },
     ],
