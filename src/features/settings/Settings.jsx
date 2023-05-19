@@ -133,19 +133,11 @@ export default function Settings({ isLogged, logout, user }) {
   };
 
   const onClose = () => {
-    navigate(-1);
+    navigate('/');
   };
 
-  const onSave = () => {
-    navigate(-1);
-  };
   return (
-    <FullScreenDialog
-      title="Settings"
-      open={true}
-      onSave={onSave}
-      onClose={onClose}
-    >
+    <FullScreenDialog title="Settings" open={true} onClose={onClose}>
       {getSettingsSections().map(({ subheader, settings }, index) => (
         <SettingsSection
           subheader={subheader}
