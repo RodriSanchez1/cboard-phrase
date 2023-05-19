@@ -6,20 +6,25 @@ import PitchSlider from './controls/PitchSlider';
 import PlaySampleButton from './controls/PlaySampleButton';
 import FullScreenDialog from '../../components/FullScreenDialog/FullScreenDialog';
 import { Paper } from '@mui/material';
+import { useNavigate } from 'react-router';
 
 export default function SpeechSettings() {
-  console.log('SpeechSettings');
+  const navigate = useNavigate();
+  const handleClose = () => {
+    navigate('/settings');
+  };
+
   return (
     <FullScreenDialog
       title="Speech"
       open={true}
       // onSave={handleSave}
-      // onClose={handleCancel}
+      onClose={handleClose}
     >
       <Paper
         elevation={3}
         sx={{
-          mt: 1,
+          m: 1,
           height: '80vh',
           display: 'flex',
           flexDirection: 'column',
