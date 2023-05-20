@@ -1,5 +1,10 @@
-import SpeechSettings from '../features/speech/SpeechSettings';
-
+import Settings from '../features/settings/Settings';
+import { Outlet } from 'react-router-dom';
 export default function SettingsPage() {
-  return <SpeechSettings />;
+  return (
+    <>
+      <Settings />
+      <Outlet />
+    </>
+  );
 }

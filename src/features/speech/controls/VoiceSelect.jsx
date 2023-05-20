@@ -5,6 +5,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useSelector, useDispatch } from 'react-redux';
 import { setVoiceURI, selectVoicesByLang } from '../speechSlice';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 export default function VoiceSelect() {
   const dispatch = useDispatch();
@@ -17,13 +18,14 @@ export default function VoiceSelect() {
   }
 
   return (
-    <FormControl fullWidth>
+    <FormControl sx={{ minWidth: '80%' }}>
       <InputLabel id="voice-select-label">Voice</InputLabel>
       <Select
         label="Voice"
         labelId="voice-select-label"
         value={voiceURI}
         onChange={handleChange}
+        input={<OutlinedInput label="Voice" />}
       >
         {Object.entries(voicesByLang).map(([lang, voices]) => [
           <ListSubheader key={lang}>{lang}</ListSubheader>,

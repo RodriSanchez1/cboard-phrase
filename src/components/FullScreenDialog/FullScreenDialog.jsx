@@ -6,7 +6,7 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import CloseIcon from '@mui/icons-material/Close';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Slide from '@mui/material/Slide';
 //import { useNavigate } from 'react-router';
 
@@ -26,44 +26,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-// const styles = {
-//   appBar: {
-//     position: 'static',
-//     flexShrink: 0,
-//   },
-//   title: {
-//     flex: 1,
-//     whiteSpace: 'nowrap',
-//     textOverflow: 'ellipsis',
-//     overflow: 'hidden',
-//   },
-//   container: {
-//     background: '#f1f1f1',
-//     height: '100%',
-//     overflowY: 'auto',
-//     WebkitOverflowScrolling: 'touch',
-//   },
-//   containerDark: {
-//     background: '#1111',
-//     height: '100%',
-//     overflowY: 'auto',
-//     WebkitOverflowScrolling: 'touch',
-//   },
-//   content: {
-// maxWidth: '680px',
-// margin: '0 auto',
-//   },
-//   contentFullWidth: {
-//     margin: '0 auto',
-//   },
-// };
-
 function FullScreenDialog(props) {
-  const { children, fullWidth, title, onSave, onClose } = props;
-
-  //const navigate = useNavigate();
-  // const theme = useTheme();
-  //const dark = theme.palette.type === 'dark' ? true : false;
+  const { children, title, onSave, onClose } = props;
 
   const handleClose = () => {
     onClose();
@@ -89,14 +53,18 @@ function FullScreenDialog(props) {
               onClick={handleClose}
               aria-label="close"
             >
-              <CloseIcon />
+              <ArrowBackIcon />
             </IconButton>
-            <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              {title}
-            </Typography>
-            <Button color="inherit" onClick={handleSave}>
-              save
-            </Button>
+            {title && (
+              <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
+                {title}
+              </Typography>
+            )}
+            {onSave && (
+              <Button color="inherit" onClick={handleSave}>
+                save
+              </Button>
+            )}
           </Toolbar>
         </AppBar>
         <div>
@@ -111,8 +79,4 @@ function FullScreenDialog(props) {
     </div>
   );
 }
-
-//export default withStyles(styles, { name: 'FullScreenDialog' })(
-//   FullScreenDialog
-// );
 export default FullScreenDialog;

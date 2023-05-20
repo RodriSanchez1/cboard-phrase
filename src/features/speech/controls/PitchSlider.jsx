@@ -3,6 +3,7 @@ import Slider from '@mui/material/Slider';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPitch } from '../speechSlice';
 import { MAX_PITCH, MIN_PITCH } from '../tts-engines/webSpeech';
+import './controls.css';
 
 export default function PitchSlider() {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ export default function PitchSlider() {
   }
 
   return (
-    <div>
+    <div className="Speech_Slider">
       <Typography id="pitch-slider" gutterBottom>
         Speaking pitch
       </Typography>

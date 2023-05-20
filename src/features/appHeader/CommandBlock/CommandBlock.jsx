@@ -48,7 +48,7 @@ export default function CommandBlock() {
       name: 'Settings',
       icon: <SettingsIcon />,
       onClick: () => {
-        console.log('Settings');
+        navigate('settings');
       },
     },
     {
