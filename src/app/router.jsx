@@ -5,6 +5,7 @@ import SettingsPage from '../pages/SettingsPage';
 import EditPage from '../pages/EditPage';
 import SpeechSettings from '../features/speech/SpeechSettings';
 import LanguageSettings from '../features/language/LanguageSettings';
+import LoginPage from '../pages/LoginPage';
 
 export const router = createBrowserRouter([
   {
@@ -32,5 +33,10 @@ export const router = createBrowserRouter([
         element: <LanguageSettings />,
       },
     ],
+  },
+  {
+    path: '/login',
+    element: <LoginPage />,
+    errorElement: <ErrorPage />,
   },
 ]);
