@@ -8,17 +8,49 @@ import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
 import { Avatar } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { useFormik } from 'formik';
+import { useState } from 'react';
 
 import './Login.css';
 
+const validate = (values) => {
+  const errors = {};
+
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+
+  if (!values.password) {
+    errors.password = 'Required';
+  } else if (values.password.length < 8) {
+    errors.password = 'Password must be at least 8 characters';
+  }
+
+  return errors;
+};
+
 export default function Login() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+  const [validation, setValidation] = useState(false);
+
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validate,
+    validateOnBlur: validation,
+    validateOnChange: validation,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    setValidation(true);
+    return formik.handleSubmit();
   };
 
   return (
@@ -36,7 +68,8 @@ export default function Login() {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+
+        <form onSubmit={onSubmit} noValidate>
           <TextField
             margin="normal"
             required
@@ -45,6 +78,11 @@ export default function Login() {
             label="Email Address"
             name="email"
             autoComplete="email"
+            onChange={formik.handleChange}
+            value={formik.values.email}
+            error={formik.errors.email ? true : false}
+            helperText={formik.errors.email}
+            onBlur={formik.handleBlur}
           />
           <TextField
             margin="normal"
@@ -55,6 +93,11 @@ export default function Login() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={formik.handleChange}
+            value={formik.values.password}
+            error={formik.errors.password ? true : false}
+            onBlur={formik.handleBlur}
+            helperText={formik.errors.password}
           />
           <Button
             type="submit"
@@ -64,14 +107,14 @@ export default function Login() {
           >
             Sign In
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
+        </form>
+        <Grid container>
+          <Grid item xs>
+            <Link href="#" variant="body2">
+              Forgot password?
+            </Link>
           </Grid>
-        </Box>
+        </Grid>
       </Box>
     </Container>
   );
