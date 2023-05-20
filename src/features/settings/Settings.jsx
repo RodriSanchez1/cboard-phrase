@@ -8,6 +8,7 @@ import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
 import LanguageIcon from '@mui/icons-material/Language';
 import PersonIcon from '@mui/icons-material/Person';
 import SettingsSection from './SettingsSection';
+import { Link } from 'react-router-dom';
 
 import { useNavigate } from 'react-router';
 import { FormattedMessage } from 'react-intl';
@@ -58,8 +59,8 @@ export default function Settings({ isLogged, logout, user }) {
           <Button
             color="primary"
             variant="outlined"
-            // component={Link}
-            // to="/login-signup"
+            component={Link}
+            to="/login"
           >
             <FormattedMessage {...messages.loginSignup} />
           </Button>
