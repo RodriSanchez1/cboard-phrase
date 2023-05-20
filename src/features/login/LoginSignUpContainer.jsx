@@ -47,7 +47,7 @@ export default function LoginSignUpContainer() {
       <IconButton
         label="close"
         onClick={handleCloseClick}
-        sx={{ position: 'absolute', top: 0, left: 0 }}
+        sx={{ position: 'absolute', top: 0, left: 0, zIndex: 1 }}
       >
         <CloseIcon />
       </IconButton>
@@ -56,7 +56,7 @@ export default function LoginSignUpContainer() {
           sx={{
             // maxWidth: '680px',
             margin: '0 auto',
-            pb: 3,
+            pb: 1,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
