@@ -5,8 +5,10 @@ import categoryReducer from '../features/category/categorySlice';
 import outputReducer from '../features/output/ouputSlice';
 import communicatorReducer from '../features/communicator/communicatorSlice';
 import { cboardPhraseAPI } from '../services/api';
+import userReducer from '../features/user/userSlice';
 
 const rootReducer = combineReducers({
+  user: userReducer,
   speech: speechReducer,
   theme: themeReducer,
   communicator: communicatorReducer,
