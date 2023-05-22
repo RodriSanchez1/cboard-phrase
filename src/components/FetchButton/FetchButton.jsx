@@ -1,5 +1,3 @@
-//generate the imports for all material ui components in one line
-
 import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import propTypes from 'prop-types';
 
@@ -27,7 +25,6 @@ export default function FetchButton({
         variant="caption"
         gutterBottom
         color="red"
-        // sx={{ visibility: visibility }}
         visibility={visibility}
       >
         {fetchError?.data?.message || 'Something went wrong. Try again later.'}
