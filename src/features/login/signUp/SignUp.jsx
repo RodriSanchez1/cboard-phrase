@@ -20,7 +20,6 @@ export default function SignUp() {
   const [addNewUser, { isSuccess, isLoading, isError, error: fetchError }] =
     useAddNewUserMutation();
 
-  console.log(isLoading, isError, fetchError, isSuccess);
   const formik = useFormik({
     initialValues: {
       name: '',

@@ -16,7 +16,6 @@ export default function FetchButton({
   fetchError,
   name,
 }) {
-  console.log(isError);
   const visibility = isError ? 'visible' : 'hidden';
 
   return (

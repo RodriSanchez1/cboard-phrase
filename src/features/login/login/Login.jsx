@@ -42,7 +42,7 @@ export default function Login() {
         navigate('/');
       }, 2000);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }
 

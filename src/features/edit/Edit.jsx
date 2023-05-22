@@ -139,7 +139,6 @@ export default function Edit() {
   };
 
   const handleAddElement = (newElement) => {
-    console.log(newElement);
     const type = openAddModal.type;
     if (type === CATEGORY) {
       const newCategories = [...editingCategories, newElement];
