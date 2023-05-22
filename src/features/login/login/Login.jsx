@@ -2,7 +2,6 @@ import { Box } from '@mui/system';
 import { Container } from '@mui/material';
 import { Typography } from '@mui/material';
 import { TextField } from '@mui/material';
-import { Button } from '@mui/material';
 import { Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { FormattedMessage } from 'react-intl';
@@ -10,29 +9,18 @@ import { Avatar } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { useFormik } from 'formik';
 import { useState } from 'react';
+import { useLoginMutation } from '../loginApi';
+import { validate } from './validateSchema';
+import FetchButton from '../../../components/FetchButton/FetchButton';
+import { useNavigate } from 'react-router-dom';
 
 import './Login.css';
 
-const validate = (values) => {
-  const errors = {};
-
-  if (!values.email) {
-    errors.email = 'Required';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
-  }
-
-  if (!values.password) {
-    errors.password = 'Required';
-  } else if (values.password.length < 8) {
-    errors.password = 'Password must be at least 8 characters';
-  }
-
-  return errors;
-};
-
 export default function Login() {
   const [validation, setValidation] = useState(false);
+  const navigate = useNavigate();
+  const [login, { isSuccess, isLoading, isError, error: fetchError }] =
+    useLoginMutation();
 
   const formik = useFormik({
     initialValues: {
@@ -42,10 +30,21 @@ export default function Login() {
     validate,
     validateOnBlur: validation,
     validateOnChange: validation,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: (formValues) => {
+      handleLogIn(formValues);
     },
   });
+
+  async function handleLogIn(formValues) {
+    try {
+      await login(formValues).unwrap();
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -99,14 +98,13 @@ export default function Login() {
             onBlur={formik.handleBlur}
             helperText={formik.errors.password}
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign In
-          </Button>
+          <FetchButton
+            isLoading={isLoading}
+            isError={isError}
+            isSuccess={isSuccess}
+            fetchError={fetchError}
+            name={'Login'}
+          />
         </form>
         <Grid container>
           <Grid item xs>

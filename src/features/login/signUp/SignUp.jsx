@@ -1,5 +1,4 @@
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
@@ -12,41 +11,14 @@ import Container from '@mui/material/Container';
 import { useFormik } from 'formik';
 import { useState } from 'react';
 import { FormControl, FormHelperText } from '@mui/material';
-
-const validate = (values) => {
-  const errors = {};
-
-  if (!values.name) {
-    errors.name = 'Required';
-  } else if (values.name.length < 3) {
-    errors.name = 'Invalid name';
-  }
-
-  if (!values.email) {
-    errors.email = 'Required';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
-  }
-
-  if (!values.password) {
-    errors.password = 'Required';
-  } else if (values.password.length < 8) {
-    errors.password = 'Password must be at least 8 characters';
-  }
-
-  if (values.password !== values.confirmPassword) {
-    errors.confirmPassword = 'Passwords must match';
-  }
-
-  if (!values.acceptedTerms) {
-    errors.acceptedTerms = 'Required';
-  }
-
-  return errors;
-};
+import { useAddNewUserMutation } from '../loginApi';
+import { validate } from './validateSchema';
+import FetchButton from '../../../components/FetchButton/FetchButton';
 
 export default function SignUp() {
   const [validation, setValidation] = useState(false);
+  const [addNewUser, { isSuccess, isLoading, isError, error: fetchError }] =
+    useAddNewUserMutation();
 
   const formik = useFormik({
     initialValues: {
@@ -59,17 +31,20 @@ export default function SignUp() {
     validate,
     validateOnBlur: validation,
     validateOnChange: validation,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: (formValues) => {
+      handleSignUp(formValues);
     },
   });
 
-  const onSubmit = (e) => {
+  const preSubmit = (e) => {
     e.preventDefault();
-    console.log(formik.values);
     setValidation(true);
     return formik.handleSubmit();
   };
+
+  async function handleSignUp(formValues) {
+    await addNewUser(formValues);
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -86,7 +61,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5" sx={{ mb: '16px' }}>
           Sign up
         </Typography>
-        <form onSubmit={onSubmit} noValidate>
+        <form onSubmit={preSubmit} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
@@ -178,14 +153,13 @@ export default function SignUp() {
               </FormControl>
             </Grid>
           </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Sign Up
-          </Button>
+          <FetchButton
+            isLoading={isLoading}
+            isError={isError}
+            isSuccess={isSuccess}
+            fetchError={fetchError}
+            name={'Sign Up'}
+          />
         </form>
       </Box>
     </Container>
