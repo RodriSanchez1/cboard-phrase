@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
-import { store } from './app/store';
+import { setupStore } from './app/store';
 import { router } from './app/router';
 import SpeechProvider from './features/speech/SpeechProvider';
 import ThemeProvider from './features/theme/ThemeProvider';
@@ -10,9 +10,11 @@ import LanguageProvider from './features/language/LanguageProvider';
 import './index.css';
 
 if (process.env.NODE_ENV === 'development') {
-  const { worker } = await import('./mocks/browser');
-  worker.start();
+  // const { worker } = await import('./mocks/browser');
+  // worker.start();
 }
+
+const store = setupStore();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
