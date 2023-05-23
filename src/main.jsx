@@ -2,11 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
-import { setupStore } from './app/store';
+import { store, persistor } from './app/store';
 import { router } from './app/router';
 import SpeechProvider from './features/speech/SpeechProvider';
 import ThemeProvider from './features/theme/ThemeProvider';
 import LanguageProvider from './features/language/LanguageProvider';
+import { PersistGate } from 'redux-persist/integration/react';
 import './index.css';
 
 if (process.env.NODE_ENV === 'development') {
@@ -14,18 +15,18 @@ if (process.env.NODE_ENV === 'development') {
   // worker.start();
 }
 
-const store = setupStore();
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <ThemeProvider>
-        <SpeechProvider>
-          <LanguageProvider>
-            <RouterProvider router={router} />
-          </LanguageProvider>
-        </SpeechProvider>
-      </ThemeProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProvider>
+          <SpeechProvider>
+            <LanguageProvider>
+              <RouterProvider router={router} />
+            </LanguageProvider>
+          </SpeechProvider>
+        </ThemeProvider>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );
