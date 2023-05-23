@@ -7,7 +7,6 @@ const initialState = {
   role: 'user',
   birthdate: new Date(),
   locale: 'en-US',
-  password: '',
   google: {},
   facebook: {},
   isFirstLogin: true,
@@ -20,16 +19,9 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     login: (state, action) => {
-      state.id = action.payload.id || 'cboard-user-id';
-      state.name = action.payload.name || '';
-      state.email = action.payload.email || '';
-      state.role = action.payload.role || 'user';
-      state.birthdate = action.payload.birthdate || new Date();
-      state.locale = action.payload.locale || 'en-US';
-      state.google = action.payload.google || {};
-      state.facebook = action.payload.facebook || {};
-      state.isFirstLogin = action.payload.isFirstLogin || false;
-      state.lastlogin = action.payload.lastlogin || new Date();
+      Object.entries(initialState).forEach(([key, value]) => {
+        state[key] = action.payload[key] || value;
+      });
       state.isLogged = true;
     },
     logout: (state) => {
