@@ -17,8 +17,20 @@ import outputReducer from '../features/output/ouputSlice';
 import communicatorReducer from '../features/communicator/communicatorSlice';
 import { cboardPhraseAPI } from '../services/api';
 
+const rootPersistConfig = {
+  key: 'root',
+  storage,
+  blacklist: ['speech'],
+};
+
+const speechPersistConfig = {
+  key: 'speech',
+  storage: storage,
+  blacklist: ['voices'],
+};
+
 const rootReducer = combineReducers({
-  speech: speechReducer,
+  speech: persistReducer(speechPersistConfig, speechReducer),
   theme: themeReducer,
   communicator: communicatorReducer,
   category: categoryReducer,
@@ -26,12 +38,7 @@ const rootReducer = combineReducers({
   [cboardPhraseAPI.reducerPath]: cboardPhraseAPI.reducer,
 });
 
-const persistConfig = {
-  key: 'root',
-  storage,
-};
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
