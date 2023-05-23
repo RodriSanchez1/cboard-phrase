@@ -1,4 +1,15 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import speechReducer from '../features/speech/speechSlice';
 import themeReducer from '../features/theme/themeSlice';
 import categoryReducer from '../features/category/categorySlice';
@@ -15,12 +26,22 @@ const rootReducer = combineReducers({
   [cboardPhraseAPI.reducerPath]: cboardPhraseAPI.reducer,
 });
 
-export const setupStore = (preloadedState) => {
-  return configureStore({
-    reducer: rootReducer,
-    middleware: (getDefaultMiddleware) =>
-      // adding the api middleware enables caching, invalidation, polling and other features of `rtk-query`
-      getDefaultMiddleware().concat(cboardPhraseAPI.middleware),
-    preloadedState,
-  });
+const persistConfig = {
+  key: 'root',
+  storage,
 };
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = configureStore({
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      // Redux persist
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(cboardPhraseAPI.middleware),
+});
+
+export let persistor = persistStore(store);
