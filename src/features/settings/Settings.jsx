@@ -15,26 +15,19 @@ import { FormattedMessage } from 'react-intl';
 import messages from './Settings.messages';
 import propTypes from 'prop-types';
 
-Settings.propTypes = {
-  isLogged: propTypes.bool.isRequired,
-  logout: propTypes.func.isRequired,
-  user: propTypes.object.isRequired,
-};
+import { useSelector, useDispatch } from 'react-redux';
+import { selectUser, selectIsLogged, logout } from '../user/userSlice';
 
-Settings.defaultProps = {
-  isLogged: false,
-  logout: () => {},
-  user: {
-    name: 'Guest',
-  },
-};
-
-export default function Settings({ isLogged, logout, user }) {
+export default function Settings() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const isLogged = useSelector(selectIsLogged);
+  const user = useSelector(selectUser);
 
   const getSettingsSections = () => {
     function handleLogOutClick() {
-      logout();
+      dispatch(logout());
     }
 
     const peopleSettings = [
@@ -46,7 +39,7 @@ export default function Settings({ isLogged, logout, user }) {
         ),
         secondary: isLogged ? user.name : null,
         text: isLogged ? messages.username : messages.guest,
-        url: '/settings/people',
+        url: '/settings/user',
         rightContent: isLogged ? (
           <Button
             color="primary"
