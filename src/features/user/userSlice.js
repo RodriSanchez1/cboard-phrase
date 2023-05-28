@@ -5,7 +5,7 @@ const initialState = {
   name: '',
   email: '',
   role: 'user',
-  birthdate: new Date(),
+  //birthdate: new Date(),
   locale: 'en-US',
   google: {},
   facebook: {},
@@ -24,12 +24,18 @@ export const userSlice = createSlice({
       });
       state.isLogged = true;
     },
-    logout: (state) => {
-      state = initialState; //eslint-disable-line
+    logout: () => initialState,
+    updateUserData: (state, action) => {
+      Object.entries(action.payload).forEach(([key, value]) => {
+        state[key] = value;
+      });
     },
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, updateUserData } = userSlice.actions;
+
+export const selectUser = (state) => state.user;
+export const selectIsLogged = (state) => state.user.isLogged;
 
 export default userSlice.reducer;
