@@ -11,7 +11,7 @@ import Slide from '@mui/material/Slide';
 //import { useNavigate } from 'react-router';
 
 FullScreenDialog.propTypes = {
-  disableSubmit: PropTypes.bool,
+  enableSave: PropTypes.bool,
   open: PropTypes.bool,
   fullWidth: PropTypes.bool,
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
@@ -27,7 +27,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 function FullScreenDialog(props) {
-  const { children, title, onSave, onClose } = props;
+  const { children, title, onSave, onClose, enableSave } = props;
 
   const handleClose = () => {
     onClose();
@@ -60,7 +60,7 @@ function FullScreenDialog(props) {
                 {title}
               </Typography>
             )}
-            {onSave && (
+            {enableSave && onSave && (
               <Button color="inherit" onClick={handleSave}>
                 save
               </Button>
