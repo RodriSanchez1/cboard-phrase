@@ -13,13 +13,16 @@ import { useLoginMutation } from '../loginApi';
 import { validate } from './validateSchema';
 import FetchButton from '../../../components/FetchButton/FetchButton';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../../user/userSlice';
 
 import './Login.css';
 
 export default function Login() {
   const [validation, setValidation] = useState(false);
   const navigate = useNavigate();
-  const [login, { isSuccess, isLoading, isError, error: fetchError }] =
+  const dispatch = useDispatch();
+  const [loginApi, { isSuccess, isLoading, isError, error: fetchError }] =
     useLoginMutation();
 
   const formik = useFormik({
@@ -37,7 +40,8 @@ export default function Login() {
 
   async function handleLogIn(formValues) {
     try {
-      await login(formValues).unwrap();
+      const user = await loginApi(formValues).unwrap();
+      dispatch(login(user));
       setTimeout(() => {
         navigate('/');
       }, 2000);

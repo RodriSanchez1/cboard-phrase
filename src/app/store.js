@@ -16,6 +16,7 @@ import categoryReducer from '../features/category/categorySlice';
 import outputReducer from '../features/output/ouputSlice';
 import communicatorReducer from '../features/communicator/communicatorSlice';
 import { cboardPhraseAPI } from '../services/api';
+import userReducer from '../features/user/userSlice';
 
 const rootPersistConfig = {
   key: 'root',
@@ -30,6 +31,7 @@ const speechPersistConfig = {
 };
 
 const rootReducer = combineReducers({
+  user: userReducer,
   speech: persistReducer(speechPersistConfig, speechReducer),
   theme: themeReducer,
   communicator: communicatorReducer,
