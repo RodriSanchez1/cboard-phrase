@@ -39,6 +39,17 @@ export const categorySlice = createSlice({
       state.categories = newCategories;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase('user/login', (state, action) => {
+      const { categories } = action.payload;
+      if (!categories.length) return;
+      for (const category of categories) {
+        state.categories.push(category);
+      }
+      state.activeCategoryId = categories[0].id;
+    });
+    builder.addCase('user/logout', () => initialState);
+  },
 });
 
 export const {
