@@ -32,6 +32,14 @@ export const communicatorSlice = createSlice({
       state.communicators[activeCommunicatorIdIndex].categories =
         newCategoriesIds;
     });
+    builder.addCase('user/login', (state, action) => {
+      const { communicators } = action.payload;
+      for (const communicator of communicators) {
+        state.communicators.push(communicator);
+        state.activeCommunicatorId = communicator.id;
+      }
+    });
+    builder.addCase('user/logout', () => initialState);
   },
 });
 
