@@ -30,7 +30,10 @@ import {
   updateCategory,
   updateCategories,
 } from '../category/categorySlice';
-import { updateCommunicator } from '../communicator/communicatorSlice';
+import {
+  selectActiveCommunicator,
+  updateCommunicator,
+} from '../communicator/communicatorSlice';
 import { useDispatch } from 'react-redux';
 import EditPhraseModal from './EditPhraseModal/EditPhraseModal';
 import EditCategoryModal from './EditCategoryModal/EditCategoryModal';
@@ -51,6 +54,7 @@ export default function Edit() {
 
   const activeCategoryId = useSelector(selectActiveCategoryId);
   const categories = useSelector(selectAllCategories);
+  const activeCommunicator = useSelector(selectActiveCommunicator);
 
   const [editingCategories, setEditingCategories] = useState([...categories]);
 
@@ -206,6 +210,17 @@ export default function Edit() {
       } catch (e) {
         console.error(e);
       }
+    } else {
+      const newCommunicatorCategoriesIds = editingCategories.map(
+        (category) => category.id
+      );
+      const newCommunicator = {
+        ...activeCommunicator,
+        categories: newCommunicatorCategoriesIds,
+      };
+      dispatch(updateCommunicator(newCommunicator));
+      dispatch(updateCategories(editingCategories));
+      navigate('/');
     }
   };
 
