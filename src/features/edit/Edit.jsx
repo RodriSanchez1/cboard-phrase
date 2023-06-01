@@ -30,6 +30,7 @@ import {
   updateCategory,
   updateCategories,
 } from '../category/categorySlice';
+import { updateCommunicator } from '../communicator/communicatorSlice';
 import { useDispatch } from 'react-redux';
 import EditPhraseModal from './EditPhraseModal/EditPhraseModal';
 import EditCategoryModal from './EditCategoryModal/EditCategoryModal';
@@ -38,10 +39,15 @@ import DeleteModal from './DeleteModal/DeleteModal';
 import AddModal from './AddModal/AddModal';
 import { useNavigate } from 'react-router';
 import { PHRASE, CATEGORY } from './Edit.const';
+import { useUpdateCategoriesMutation } from '../category/categoryApi';
+import { selectIsLogged, selectUser } from '../user/userSlice';
 
 export default function Edit() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [updateCategoriesApi] = useUpdateCategoriesMutation();
+  const isLogged = useSelector(selectIsLogged);
+  const user = useSelector(selectUser);
 
   const activeCategoryId = useSelector(selectActiveCategoryId);
   const categories = useSelector(selectAllCategories);
@@ -97,6 +103,13 @@ export default function Edit() {
     });
     const newCategory = { ...editingCategory, phrases: newPhrases };
     setEditingCategory(newCategory);
+    const newCategories = editingCategories.map((category) =>
+      category.id === editingCategory.id
+        ? { ...category, phrases: newPhrases }
+        : category
+    );
+
+    setEditingCategories(newCategories);
     setIsOpenEditPhraseModal(false);
   };
 
@@ -108,6 +121,13 @@ export default function Edit() {
     const isChanged = newCategory.name !== editingCategory.name;
     setIsModified(isChanged);
     setEditingCategory({ ...newCategory });
+
+    const newCategories = editingCategories.map((category) =>
+      category.id === editingCategory.id
+        ? { ...category, name: newCategory.name }
+        : category
+    );
+    setEditingCategories(newCategories);
     setIsOpenEditCategoryModal(false);
   };
 
@@ -125,11 +145,18 @@ export default function Edit() {
       setEditingCategory(newCategories[0]);
       setIsModified(false);
     }
+
     if (deletingElement.type === PHRASE) {
       const newPhrases = editingCategory.phrases.filter(
         (phrase) => phrase.id !== deletingElement.element.id
       );
       setEditingCategory({ ...editingCategory, phrases: newPhrases });
+      const newCategories = editingCategories.map((category) =>
+        category.id === editingCategory.id
+          ? { ...category, phrases: newPhrases }
+          : category
+      );
+      setEditingCategories(newCategories);
     }
     setIsOpenDeleteModal(false);
   };
@@ -148,22 +175,38 @@ export default function Edit() {
     if (type === PHRASE) {
       const newPhrases = [...editingCategory.phrases, newElement];
       setEditingCategory({ ...editingCategory, phrases: newPhrases });
+
+      const newCategories = editingCategories.map((category) =>
+        category.id === editingCategory.id
+          ? { ...category, phrases: newPhrases }
+          : category
+      );
+
+      setEditingCategories(newCategories);
     }
     setOpenAddModal({ isOpen: false, type: '' });
     setIsModified(true);
   };
 
-  const handleSave = () => {
-    if (categories.length === editingCategories.length) {
-      const newCategory = { ...editingCategory };
-      dispatch(updateCategory(newCategory));
-    } else {
-      const newCategories = editingCategories.map((category) =>
-        category.id === editingCategory.id ? editingCategory : category
-      );
-      dispatch(updateCategories(newCategories));
+  const handleSave = async () => {
+    if (isLogged) {
+      try {
+        const res = await updateCategoriesApi({
+          userEmail: user.email,
+          editingCategories,
+        }).unwrap();
+        console.log(res);
+        const { newCategories: dbCategories, userCommunicator } = res.response;
+        if (dbCategories) {
+          dispatch(updateCommunicator(userCommunicator));
+          dispatch(updateCategories(dbCategories));
+          setIsModified(false);
+          navigate('/');
+        }
+      } catch (e) {
+        console.error(e);
+      }
     }
-    navigate(-1);
   };
 
   const handleCancel = () => {
@@ -180,6 +223,7 @@ export default function Edit() {
       open={true}
       onSave={handleSave}
       onClose={handleCancel}
+      enableSave={true}
     >
       <Paper elevation={3}>
         <List
@@ -207,7 +251,6 @@ export default function Edit() {
                 label={editingCategory?.name || ''}
                 onChange={handleSelectChange}
                 input={<OutlinedInput label="Category" />}
-                disabled={isModified}
               >
                 {editingCategories.map((category) => {
                   return (
