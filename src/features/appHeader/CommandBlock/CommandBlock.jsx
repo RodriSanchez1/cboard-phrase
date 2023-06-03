@@ -16,6 +16,7 @@ import {
   backSpace,
 } from '../../output/ouputSlice';
 import { useNavigate } from 'react-router-dom';
+import { gaEvents } from '../../analytics/gaEvents';
 
 export default function CommandBlock() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ export default function CommandBlock() {
       icon: <VolumeUpIcon />,
       onClick: () => {
         dispatch(speak(output));
+        gaEvents.startSpeech(output);
       },
     },
     {
