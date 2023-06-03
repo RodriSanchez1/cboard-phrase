@@ -10,6 +10,17 @@ import LanguageProvider from './features/language/LanguageProvider';
 import { PersistGate } from 'redux-persist/integration/react';
 import './index.css';
 
+import ReactGA from 'react-ga4';
+
+ReactGA.initialize('G-04C2G47Y2W', {
+  gaOptions: {
+    debug_mode: true,
+  },
+  gtagOptions: {
+    debug_mode: true,
+  },
+});
+
 if (process.env.NODE_ENV === 'development') {
   // const { worker } = await import('./mocks/browser');
   // worker.start();
