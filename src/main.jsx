@@ -7,6 +7,7 @@ import { router } from './app/router';
 import SpeechProvider from './features/speech/SpeechProvider';
 import ThemeProvider from './features/theme/ThemeProvider';
 import LanguageProvider from './features/language/LanguageProvider';
+import AnalyticsProvider from './features/analytics/AnalyticsProvider';
 import { PersistGate } from 'redux-persist/integration/react';
 import './index.css';
 
@@ -33,7 +34,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <ThemeProvider>
           <SpeechProvider>
             <LanguageProvider>
-              <RouterProvider router={router} />
+              <AnalyticsProvider>
+                <RouterProvider router={router} />
+              </AnalyticsProvider>
             </LanguageProvider>
           </SpeechProvider>
         </ThemeProvider>
