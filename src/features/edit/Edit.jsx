@@ -44,6 +44,13 @@ import { useNavigate } from 'react-router';
 import { PHRASE, CATEGORY } from './Edit.const';
 import { useUpdateCategoriesMutation } from '../category/categoryApi';
 import { selectIsLogged, selectUser } from '../user/userSlice';
+import useAlertSnackbar from '../../hooks/useAlertSnackbar';
+import AlertSnackbar from '../../components/AlertSnackbar/AlertSnackbar';
+import {
+  INFO,
+  SUCCESS,
+  ERROR,
+} from '../../components/AlertSnackbar/AlertSnackbar.constants';
 
 export default function Edit() {
   const dispatch = useDispatch();
@@ -78,6 +85,9 @@ export default function Edit() {
     element: {},
     type: '',
   });
+
+  const { isOpen, onCloseAlertSnackbar, severity, setSeverityAndToggle } =
+    useAlertSnackbar();
 
   const handleSelectChange = (event) => {
     const selectedCategory = editingCategories.find(
@@ -195,6 +205,7 @@ export default function Edit() {
   const handleSave = async () => {
     if (isLogged) {
       try {
+        setSeverityAndToggle(INFO);
         const res = await updateCategoriesApi({
           userEmail: user.email,
           editingCategories,
@@ -205,9 +216,13 @@ export default function Edit() {
           dispatch(updateCommunicator(userCommunicator));
           dispatch(updateCategories(dbCategories));
           setIsModified(false);
-          navigate('/');
+          setSeverityAndToggle(SUCCESS);
+          setTimeout(() => {
+            navigate('/');
+          }, 2000);
         }
       } catch (e) {
+        setSeverityAndToggle(ERROR);
         console.error(e);
       }
     } else {
@@ -404,6 +419,11 @@ export default function Edit() {
             onAddElement={handleAddElement}
           />
         )}
+        <AlertSnackbar
+          severity={severity}
+          open={isOpen}
+          onClose={onCloseAlertSnackbar}
+        />
       </Paper>
     </FullScreenDialog>
   );
