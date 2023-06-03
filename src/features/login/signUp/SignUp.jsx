@@ -14,8 +14,13 @@ import { FormControl, FormHelperText } from '@mui/material';
 import { useAddNewUserMutation } from '../loginApi';
 import { validate } from './validateSchema';
 import FetchButton from '../../../components/FetchButton/FetchButton';
+import propTypes from 'prop-types';
 
-export default function SignUp() {
+SignUp.propTypes = {
+  onTabChange: propTypes.func.isRequired,
+};
+
+export default function SignUp({ onTabChange }) {
   const [validation, setValidation] = useState(false);
   const [addNewUser, { isSuccess, isLoading, isError, error: fetchError }] =
     useAddNewUserMutation();
@@ -43,7 +48,12 @@ export default function SignUp() {
   };
 
   async function handleSignUp(formValues) {
-    await addNewUser(formValues);
+    try {
+      await addNewUser(formValues).unwrap();
+      onTabChange(0);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (

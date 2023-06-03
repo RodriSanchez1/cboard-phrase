@@ -5,8 +5,16 @@ const categoryApi = cboardPhraseAPI.injectEndpoints({
     getCategories: builder.query({
       query: () => `categories`,
     }),
+    updateCategories: builder.mutation({
+      query: ({ userEmail, ...body }) => ({
+        url: `/category/${userEmail}`,
+        method: 'PUT',
+        body,
+      }),
+    }),
   }),
   overrideExisting: false,
 });
 
-export const { useGetCategoriesQuery } = categoryApi;
+export const { useGetCategoriesQuery, useUpdateCategoriesMutation } =
+  categoryApi;

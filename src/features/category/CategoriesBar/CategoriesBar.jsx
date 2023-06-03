@@ -1,13 +1,27 @@
 import './CategoriesBar.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectAllCategories, setActiveCategoryId } from '../categorySlice';
+import {
+  selectAllCategories,
+  setActiveCategoryId,
+  selectActiveCategoryId,
+} from '../categorySlice';
 import { Box, Tab, Tabs, tabsClasses } from '@mui/material';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function CategoriesBar() {
   const dispatch = useDispatch();
   const categories = useSelector(selectAllCategories);
+  const activeCategoryId = useSelector(selectActiveCategoryId);
+
+  useEffect(() => {
+    if (categories.length) {
+      const activeTab = categories.findIndex((category) =>
+        category.id === activeCategoryId ? true : false
+      );
+      return activeTab !== -1 && setValue(activeTab);
+    }
+  }, [activeCategoryId, categories]);
 
   const [value, setValue] = useState(0);
 

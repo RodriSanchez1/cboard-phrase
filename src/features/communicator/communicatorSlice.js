@@ -21,6 +21,13 @@ export const communicatorSlice = createSlice({
       const categoryIndex = state.categories.findIndex((cat) => cat.id === id);
       state.categories.splice(categoryIndex, 1);
     },
+    updateCommunicator: (state, action) => {
+      const { id } = action.payload;
+      const communicatorIndex = state.communicators.findIndex(
+        (com) => com.id === id
+      );
+      state.communicators[communicatorIndex] = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase('category/updateCategories', (state, action) => {
@@ -32,10 +39,18 @@ export const communicatorSlice = createSlice({
       state.communicators[activeCommunicatorIdIndex].categories =
         newCategoriesIds;
     });
+    builder.addCase('user/login', (state, action) => {
+      const { communicators } = action.payload;
+      for (const communicator of communicators) {
+        state.communicators.push(communicator);
+        state.activeCommunicatorId = communicator.id;
+      }
+    });
+    builder.addCase('user/logout', () => initialState);
   },
 });
 
-export const { setActiveCommunicatorId, deleteCategory } =
+export const { setActiveCommunicatorId, deleteCategory, updateCommunicator } =
   communicatorSlice.actions;
 
 const selectCommunicators = (state) => state.communicator.communicators;
