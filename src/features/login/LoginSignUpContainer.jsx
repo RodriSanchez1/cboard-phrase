@@ -80,7 +80,7 @@ export default function LoginSignUpContainer() {
             <Login handleChange={handleChange} />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <Signup onTabChange={handleChange} />
+            <Signup onTabChange={setValue} />
           </TabPanel>
         </Paper>
       </Container>
