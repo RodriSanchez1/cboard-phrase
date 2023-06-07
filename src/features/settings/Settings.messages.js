@@ -81,4 +81,8 @@ export default defineMessages({
     id: 'cboard.components.Settings.userHelp',
     defaultMessage: 'User Help',
   },
+  reports: {
+    id: 'cboard.components.Settings.reports',
+    defaultMessage: 'Reports',
+  },
 });
