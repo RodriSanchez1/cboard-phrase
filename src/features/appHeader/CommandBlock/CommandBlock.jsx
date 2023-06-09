@@ -16,11 +16,17 @@ import {
   backSpace,
 } from '../../output/ouputSlice';
 import { useNavigate } from 'react-router-dom';
+import { gaEvents } from '../../analytics/gaEvents';
+import { selectUser } from '../../user/userSlice';
+import { useTrackEventMutation } from '../../reports/reportApi';
 
 export default function CommandBlock() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const output = useSelector(selectText);
+
+  const user = useSelector(selectUser);
+  const [trackEvent] = useTrackEventMutation();
 
   const commandBlockItems = [
     {
@@ -28,6 +34,17 @@ export default function CommandBlock() {
       icon: <VolumeUpIcon />,
       onClick: () => {
         dispatch(speak(output));
+        gaEvents.startSpeech(output);
+        if (user.isLogged) {
+          trackEvent({
+            userId: user.id,
+            event: {
+              action: 'Start Speech',
+              category: 'Speech',
+              label: output,
+            },
+          });
+        }
       },
     },
     {

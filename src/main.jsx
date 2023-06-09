@@ -7,8 +7,20 @@ import { router } from './app/router';
 import SpeechProvider from './features/speech/SpeechProvider';
 import ThemeProvider from './features/theme/ThemeProvider';
 import LanguageProvider from './features/language/LanguageProvider';
+import AnalyticsProvider from './features/analytics/AnalyticsProvider';
 import { PersistGate } from 'redux-persist/integration/react';
 import './index.css';
+
+import ReactGA from 'react-ga4';
+
+ReactGA.initialize('G-04C2G47Y2W', {
+  gaOptions: {
+    debug_mode: true,
+  },
+  gtagOptions: {
+    debug_mode: true,
+  },
+});
 
 if (process.env.NODE_ENV === 'development') {
   // const { worker } = await import('./mocks/browser');
@@ -22,7 +34,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <ThemeProvider>
           <SpeechProvider>
             <LanguageProvider>
-              <RouterProvider router={router} />
+              <AnalyticsProvider>
+                <RouterProvider router={router} />
+              </AnalyticsProvider>
             </LanguageProvider>
           </SpeechProvider>
         </ThemeProvider>

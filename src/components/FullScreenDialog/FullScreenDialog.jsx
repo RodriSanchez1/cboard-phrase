@@ -26,8 +26,17 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+const fullWidthStyle = {
+  width: '100%',
+};
+
+const normalStyle = {
+  maxWidth: '680px',
+  margin: '0 auto',
+};
+
 function FullScreenDialog(props) {
-  const { children, title, onSave, onClose, enableSave } = props;
+  const { children, title, onSave, onClose, enableSave, fullWidth } = props;
 
   const handleClose = () => {
     onClose();
@@ -68,12 +77,7 @@ function FullScreenDialog(props) {
           </Toolbar>
         </AppBar>
         <div>
-          <div
-            // className={fullWidth ? classes.contentFullWidth : classes.content}
-            style={{ maxWidth: '680px', margin: '0 auto' }}
-          >
-            {children}
-          </div>
+          <div style={fullWidth ? fullWidthStyle : normalStyle}>{children}</div>
         </div>
       </Dialog>
     </div>

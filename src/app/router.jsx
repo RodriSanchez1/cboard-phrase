@@ -7,6 +7,7 @@ import SpeechSettings from '../features/speech/SpeechSettings';
 import LanguageSettings from '../features/language/LanguageSettings';
 import LoginPage from '../pages/LoginPage';
 import User from '../features/user/User';
+import ReportPage from '../pages/ReportPage';
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,11 @@ export const router = createBrowserRouter([
   {
     path: '/login',
     element: <LoginPage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: '/report',
+    element: <ReportPage />,
     errorElement: <ErrorPage />,
   },
 ]);

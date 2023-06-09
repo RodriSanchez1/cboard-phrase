@@ -5,6 +5,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import NavigationIcon from '@mui/icons-material/Navigation';
 import RecordVoiceOverIcon from '@mui/icons-material/RecordVoiceOver';
+import AnalyticsIcon from '@mui/icons-material/Analytics';
 import LanguageIcon from '@mui/icons-material/Language';
 import PersonIcon from '@mui/icons-material/Person';
 import SettingsSection from './SettingsSection';
@@ -58,6 +59,11 @@ export default function Settings() {
             <FormattedMessage {...messages.loginSignup} />
           </Button>
         ),
+      },
+      {
+        icon: <AnalyticsIcon />,
+        text: messages.reports,
+        url: '/report',
       },
     ];
 
