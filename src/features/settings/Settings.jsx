@@ -115,7 +115,7 @@ export default function Settings() {
           {
             icon: <InfoOutlinedIcon />,
             text: messages.about,
-            url: '/settings/about',
+            onClick: () => window.open('https://www.cboard.io', '_blank'),
           },
           // {
           //   icon: <MonetizationOnIcon />,
