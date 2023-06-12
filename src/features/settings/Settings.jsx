@@ -73,11 +73,11 @@ export default function Settings() {
         text: messages.display,
         url: '/settings/display',
       },
-      {
-        icon: <NavigationIcon />,
-        text: messages.navigation,
-        url: '/settings/navigation',
-      },
+      // {
+      //   icon: <NavigationIcon />,
+      //   text: messages.navigation,
+      //   url: '/settings/navigation',
+      // },
     ];
 
     return [
