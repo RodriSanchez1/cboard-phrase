@@ -8,6 +8,7 @@ import LanguageSettings from '../features/language/LanguageSettings';
 import LoginPage from '../pages/LoginPage';
 import User from '../features/user/User';
 import ReportPage from '../pages/ReportPage';
+import Help from '../features/help/Help';
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
       {
         path: 'user',
         element: <User />,
+      },
+      {
+        path: 'help',
+        element: <Help />,
       },
     ],
   },
