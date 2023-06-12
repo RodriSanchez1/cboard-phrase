@@ -24,6 +24,6 @@ export default defineMessages({
   },
   gridSizeSecondary: {
     id: 'cboard.components.Settings.Display.gridSizeSecondary',
-    defaultMessage: 'Elements size',
+    defaultMessage: 'Small: 3 columns, Medium: 4 columns, Large: 5 columns',
   },
 });
