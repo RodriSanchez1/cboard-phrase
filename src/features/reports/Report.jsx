@@ -33,7 +33,7 @@ export default function Report() {
     const dateEnd = moment();
     const dateStart = moment().subtract(range, 'days');
     while (dateEnd.diff(dateStart, 'days') >= 0) {
-      days.push({ date: dateStart.format('DD/MM'), 'Times speaked': 1 });
+      days.push({ date: dateStart.format('DD/MM'), 'Times speaked': 0 });
       dateStart.add(1, 'days');
     }
     return days;
