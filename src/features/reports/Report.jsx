@@ -13,7 +13,11 @@ import { useGetTopUsedSentencesQuery } from '../reports/reportApi';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../user/userSlice';
+import CircularProgress from '@mui/material/CircularProgress';
 import './Report.css';
+
+import CustomLineChart from '../../components/CustomLineChart/CustomLineChart';
+import moment from 'moment';
 
 export default function Report() {
   const navigate = useNavigate();
@@ -24,6 +28,20 @@ export default function Report() {
 
   const [days, setDays] = useState(10);
   const [topUsedSentences, setTopUsedSentences] = useState([]);
+
+  const getDates = (range) => {
+    const days = [];
+    const dateEnd = moment();
+    const dateStart = moment().subtract(range, 'days');
+    while (dateEnd.diff(dateStart, 'days') >= 0) {
+      days.push({ date: dateStart.format('DD/MM'), 'Times speaked': 0 });
+      dateStart.add(1, 'days');
+    }
+    return days;
+  };
+
+  const [speakEventsPerDay, setSpeakEventsPerDay] = useState(getDates(days));
+  //console.log(dates);
 
   const { data, refetch, error, isLoading } = useGetTopUsedSentencesQuery({
     userId: user.id,
@@ -46,7 +64,18 @@ export default function Report() {
   useEffect(() => {
     if (!data) return;
     setTopUsedSentences(data.topUsedSentences);
-  }, [data]);
+    const dates = getDates(days);
+    const speakEventsPerDay = dates.map((date) => {
+      const speakEvent = data.timesSpeaked.find((speakEvent) => {
+        return speakEvent.date === date.date;
+      });
+      if (speakEvent) {
+        return { date: date.date, 'Times speaked': speakEvent.count };
+      }
+      return { date: date.date, 'Times speaked': 0 };
+    });
+    setSpeakEventsPerDay(speakEventsPerDay);
+  }, [data, days]);
 
   return (
     <FullScreenDialog
@@ -67,6 +96,7 @@ export default function Report() {
                   autoWidth={false}
                   onChange={handleDaysChange}
                   value={days}
+                  sx={{ backgroundColor: '#5c5c5d', color: '#fff' }}
                 >
                   <MenuItem value={10}>
                     <FormattedMessage {...messages.tenDaysUsage} />
@@ -84,29 +114,11 @@ export default function Report() {
               </FormControl>
             </Grid>
             <Grid item className="Report__Graph__Select__Item">
-              {/* {isFetching && <CircularProgress size={30} thickness={4} />} */}
+              {isLoading && <CircularProgress size={30} thickness={4} />}
             </Grid>
           </Grid>
+          <CustomLineChart data={speakEventsPerDay} />
         </div>
-        {/* <ModifiedAreaChart
-            height="200px"
-            option={{
-              series: [
-                {
-                  data: usage.data,
-                  type: 'line',
-                },
-              ],
-              xAxis: {
-                data: this.getDates(days),
-              },
-              yAxis: {
-                max: usage.max,
-                min: usage.min,
-                offset: -13,
-              },
-            }}
-          /> */}
         <div className="Report__Metrics">
           <Grid
             container

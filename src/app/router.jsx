@@ -9,6 +9,7 @@ import LoginPage from '../pages/LoginPage';
 import User from '../features/user/User';
 import ReportPage from '../pages/ReportPage';
 import Help from '../features/help/Help';
+import Display from '../features/display/Display';
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: 'help',
         element: <Help />,
+      },
+      {
+        path: 'display',
+        element: <Display />,
       },
     ],
   },

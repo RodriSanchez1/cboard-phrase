@@ -156,7 +156,25 @@ export default function SignUp({ onTabChange }) {
                   }
                   label={
                     <FormHelperText>
-                      {'I accept the Terms of Service and Privacy Policy.'}
+                      <span>
+                        I accept the{' '}
+                        <a
+                          href="https://www.cboard.io/terms-of-use/"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          Terms of Service
+                        </a>
+                        {' and '}
+                        <a
+                          href="https://www.cboard.io/privacy/"
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          Privacy Policy
+                        </a>
+                        .
+                      </span>
                     </FormHelperText>
                   }
                 />

@@ -17,6 +17,7 @@ import outputReducer from '../features/output/ouputSlice';
 import communicatorReducer from '../features/communicator/communicatorSlice';
 import { cboardPhraseAPI } from '../services/api';
 import userReducer from '../features/user/userSlice';
+import displayReducer from '../features/display/displaySlice';
 
 const rootPersistConfig = {
   key: 'root',
@@ -37,6 +38,7 @@ const rootReducer = combineReducers({
   communicator: communicatorReducer,
   category: categoryReducer,
   output: outputReducer,
+  display: displayReducer,
   [cboardPhraseAPI.reducerPath]: cboardPhraseAPI.reducer,
 });
 

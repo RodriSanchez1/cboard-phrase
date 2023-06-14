@@ -73,11 +73,11 @@ export default function Settings() {
         text: messages.display,
         url: '/settings/display',
       },
-      {
-        icon: <NavigationIcon />,
-        text: messages.navigation,
-        url: '/settings/navigation',
-      },
+      // {
+      //   icon: <NavigationIcon />,
+      //   text: messages.navigation,
+      //   url: '/settings/navigation',
+      // },
     ];
 
     return [
@@ -115,7 +115,7 @@ export default function Settings() {
           {
             icon: <InfoOutlinedIcon />,
             text: messages.about,
-            url: '/settings/about',
+            onClick: () => window.open('https://www.cboard.io', '_blank'),
           },
           // {
           //   icon: <MonetizationOnIcon />,
