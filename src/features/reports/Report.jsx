@@ -13,6 +13,7 @@ import { useGetTopUsedSentencesQuery } from '../reports/reportApi';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../user/userSlice';
+import CircularProgress from '@mui/material/CircularProgress';
 import './Report.css';
 
 import CustomLineChart from '../../components/CustomLineChart/CustomLineChart';
@@ -113,7 +114,7 @@ export default function Report() {
               </FormControl>
             </Grid>
             <Grid item className="Report__Graph__Select__Item">
-              {/* {isFetching && <CircularProgress size={30} thickness={4} />} */}
+              {isLoading && <CircularProgress size={30} thickness={4} />}
             </Grid>
           </Grid>
           <CustomLineChart data={speakEventsPerDay} />
