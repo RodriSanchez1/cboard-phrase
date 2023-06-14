@@ -95,6 +95,7 @@ export default function Report() {
                   autoWidth={false}
                   onChange={handleDaysChange}
                   value={days}
+                  sx={{ backgroundColor: '#5c5c5d', color: '#fff' }}
                 >
                   <MenuItem value={10}>
                     <FormattedMessage {...messages.tenDaysUsage} />
