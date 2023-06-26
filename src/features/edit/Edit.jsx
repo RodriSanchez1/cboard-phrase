@@ -259,7 +259,7 @@ export default function Edit() {
         <List
           subheader={
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <ListSubheader disableSticky>Categories</ListSubheader>
+              <ListSubheader disableSticky>Select a category</ListSubheader>
               <Button
                 //variant="outlined"
                 startIcon={<AddCircleIcon />}
@@ -295,11 +295,7 @@ export default function Edit() {
         </List>
       </Paper>
       <Paper elevation={3} sx={{ mt: 1 }}>
-        <List
-          subheader={
-            <ListSubheader disableSticky>Selected category</ListSubheader>
-          }
-        >
+        <List subheader={<ListSubheader disableSticky>Category</ListSubheader>}>
           <ListItem>
             <ListItemIcon>
               <ClassIcon />
