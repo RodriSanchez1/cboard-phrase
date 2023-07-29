@@ -51,7 +51,7 @@ export default function CommandBlock() {
       name: 'User',
       icon: <PersonIcon />,
       onClick: () => {
-        console.log('User');
+        navigate('settings/user');
       },
     },
     {
