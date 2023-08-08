@@ -9,6 +9,43 @@ import { Box, Tab, Tabs, tabsClasses } from '@mui/material';
 
 import { useState, useEffect } from 'react';
 
+import { styled } from '@mui/material/styles';
+
+const StyledTabs = styled(Tabs)({
+  borderBottom: '1px solid #e8e8e8',
+  '& .MuiTabs-indicator': {
+    display: 'none',
+    backgroundColor: 'rgb(237, 108, 2)',
+    transition: '1s',
+  },
+});
+
+const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
+  ({ theme }) => ({
+    textTransform: 'uppercase',
+    transition: '0.5s',
+    minWidth: 0,
+    [theme.breakpoints.up('sm')]: {
+      minWidth: 0,
+    },
+    fontWeight: theme.typography.fontWeightRegular,
+    marginRight: '3px',
+    color: 'rgba(0, 0, 0, 0.85)',
+    borderRadius: '15px',
+    '&:hover': {
+      opacity: 1,
+    },
+    '&.Mui-selected': {
+      color: '#FFF',
+      fontWeight: theme.typography.fontWeightRegular,
+      backgroundColor: 'rgb(237, 108, 2)',
+    },
+    '&.Mui-focusVisible': {
+      backgroundColor: '#d1eaff',
+    },
+  })
+);
+
 export default function CategoriesBar() {
   const dispatch = useDispatch();
   const categories = useSelector(selectAllCategories);
@@ -46,7 +83,7 @@ export default function CategoriesBar() {
           alignItems: 'center',
         }}
       >
-        <Tabs
+        <StyledTabs
           value={value}
           onChange={handleChange}
           variant="scrollable"
@@ -61,7 +98,7 @@ export default function CategoriesBar() {
           }}
         >
           {categories.map((category) => (
-            <Tab
+            <StyledTab
               key={category.id}
               onClick={() => handleClick(category)}
               sx={{
@@ -74,7 +111,7 @@ export default function CategoriesBar() {
               wrapped
             />
           ))}
-        </Tabs>
+        </StyledTabs>
       </Box>
     </div>
   );

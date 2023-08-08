@@ -108,7 +108,7 @@ export default function Edit() {
     const newPhrases = editingCategory.phrases.map((phrase) => {
       if (phrase.id === newPhrase.id) {
         const isChanged =
-          phrase.name !== newPhrase.name ||
+          phrase.label !== newPhrase.label ||
           phrase.backgroundColor !== newPhrase.backgroundColor;
         setIsModified(isChanged);
         return newPhrase;
@@ -157,7 +157,6 @@ export default function Edit() {
       );
       setEditingCategories(newCategories);
       setEditingCategory(newCategories[0]);
-      setIsModified(false);
     }
 
     if (deletingElement.type === PHRASE) {
@@ -172,6 +171,7 @@ export default function Edit() {
       );
       setEditingCategories(newCategories);
     }
+    setIsModified(true);
     setIsOpenDeleteModal(false);
   };
 

@@ -6,5 +6,5 @@
   background: #5c5c5d;
   direction: ltr;
   overflow-x: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
 }

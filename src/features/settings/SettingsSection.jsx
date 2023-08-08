@@ -24,7 +24,7 @@ SettingsSection.defaultProps = {
 
 export default function SettingsSection({ subheader, settings }) {
   return (
-    <Paper className="Settings__section" elevation={3} sx={{ mt: 1 }}>
+    <Paper className="Settings__section" elevation={3} sx={{ mt: 1, mb: 2 }}>
       <List
         subheader={
           <ListSubheader>
