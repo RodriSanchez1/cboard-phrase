@@ -1,5 +1,5 @@
 import Report from '../features/reports/Report';
 
-export default function LoginPage() {
+export default function ReportPage() {
   return <Report />;
 }
